@@ -1,0 +1,268 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  background: #05070d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(212, 168, 63, 0.08), transparent 34%),
+    linear-gradient(180deg, rgba(12, 16, 24, 0.92), rgba(3, 5, 9, 1) 64%),
+    #05070d;
+  color: #e7dfcf;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(231, 223, 207, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(231, 223, 207, 0.018) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent 82%);
+}
+
+button {
+  font: inherit;
+}
+
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid rgba(212, 168, 63, 0.72);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: rgba(212, 168, 63, 0.3);
+  color: #fff8e8;
+}
+
+.atlas-scroll {
+  scrollbar-color: rgba(212, 168, 63, 0.45) rgba(255, 255, 255, 0.06);
+  scrollbar-width: thin;
+}
+
+.home-web-page,
+.atlas-continuous-page {
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(188, 104, 31, 0.12), transparent 22%),
+    radial-gradient(circle at 50% 48%, rgba(139, 163, 181, 0.08), transparent 47%),
+    radial-gradient(circle at 24% 18%, rgba(255, 255, 255, 0.035), transparent 24%),
+    #02040a;
+}
+
+.home-web-page::before,
+.home-web-page::after,
+.atlas-continuous-page::before,
+.atlas-continuous-page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.home-web-page::before,
+.atlas-continuous-page::before {
+  z-index: -2;
+  background:
+    radial-gradient(circle at 12% 62%, rgba(116, 139, 158, 0.07), transparent 27%),
+    radial-gradient(circle at 82% 36%, rgba(181, 124, 54, 0.06), transparent 24%),
+    linear-gradient(180deg, rgba(5, 8, 15, 0.4), rgba(0, 0, 0, 0.82));
+}
+
+.home-web-page::after,
+.atlas-continuous-page::after {
+  z-index: -1;
+  opacity: 0.55;
+  background-image:
+    radial-gradient(circle, rgba(230, 237, 242, 0.36) 0 1px, transparent 1.4px),
+    radial-gradient(circle, rgba(205, 151, 76, 0.22) 0 1px, transparent 1.3px);
+  background-position:
+    0 0,
+    38px 62px;
+  background-size:
+    151px 149px,
+    221px 211px;
+  mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.92), transparent 78%);
+}
+
+.home-strand-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.22rem;
+  max-width: 11rem;
+  color: rgba(228, 221, 208, 0.8);
+  cursor: pointer;
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1.12;
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.9),
+    0 0 18px rgba(226, 155, 62, 0.18);
+  transition:
+    color 180ms ease,
+    text-shadow 180ms ease;
+}
+
+.home-strand-label.is-active {
+  color: rgba(255, 240, 208, 0.96);
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.94),
+    0 0 18px rgba(226, 155, 62, 0.44);
+}
+
+.home-strand-label span {
+  max-width: 100%;
+  overflow-wrap: normal;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22rem;
+  transition: text-decoration-color 180ms ease;
+}
+
+.home-strand-label.is-active span {
+  text-decoration-color: rgba(216, 168, 88, 0.48);
+}
+
+.home-strand-label small {
+  color: rgba(216, 168, 88, 0.62);
+  font-size: 0.56rem;
+  line-height: 1;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: opacity 180ms ease;
+}
+
+.home-bitcoin-symbol {
+  fill: rgba(77, 42, 13, 0.78);
+  font-family: Georgia, Cambria, "Times New Roman", serif;
+  font-size: 5rem;
+  font-weight: 700;
+  filter: drop-shadow(0 0 7px rgba(255, 223, 158, 0.24));
+}
+
+.home-bitcoin-symbol-glow {
+  fill: rgba(255, 219, 142, 0.22);
+  font-family: Georgia, Cambria, "Times New Roman", serif;
+  font-size: 5rem;
+  font-weight: 700;
+  filter: blur(1.2px);
+}
+
+.coming-soon-title {
+  fill: rgba(236, 229, 216, 0.92);
+  font-size: 0.84rem;
+  font-weight: 500;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.coming-soon-kicker {
+  fill: rgba(212, 168, 63, 0.72);
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.continuous-node-label {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.35rem;
+  color: rgba(236, 229, 216, 0.9);
+  font-size: 0.62rem;
+  font-weight: 500;
+  line-height: 1.14;
+  text-align: center;
+  overflow-wrap: normal;
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.95),
+    0 0 14px rgba(0, 0, 0, 0.86);
+}
+
+.continuous-detail-panel {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 20;
+  width: min(36rem, calc(100vw - 2.5rem));
+  max-height: min(72vh, 42rem);
+  overflow: auto;
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+  scrollbar-width: thin;
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  border-radius: 1.1rem;
+  background: linear-gradient(180deg, rgba(8, 12, 19, 0.76), rgba(5, 8, 13, 0.66));
+  padding: 1rem;
+  box-shadow: 0 18px 70px rgba(0, 0, 0, 0.36);
+  backdrop-filter: blur(20px);
+}
+
+.continuous-detail-panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+.continuous-detail-panel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.continuous-detail-panel::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+}
+
+.graph-shell {
+  height: min(540px, calc(100vh - 250px));
+  min-height: 430px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 1100px) {
+  .continuous-detail-panel {
+    right: 0.875rem;
+    bottom: calc(0.875rem + env(safe-area-inset-bottom));
+    left: 0.875rem;
+    width: auto;
+    max-height: 38vh;
+    padding: 0.95rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .continuous-detail-panel {
+    padding: 0.85rem;
+  }
+
+  .graph-shell {
+    height: 420px;
+    min-height: 360px;
+  }
+}

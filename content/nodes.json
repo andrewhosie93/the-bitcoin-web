@@ -1,0 +1,713 @@
+[
+  {
+    "id": "bitcoin",
+    "title": "Bitcoin",
+    "shortTitle": "Bitcoin",
+    "summary": "A monetary network that combines digital scarcity, settlement, custody, ledgers, and social coordination without a central issuer.",
+    "surface": "Bitcoin is the starting point of the atlas. Every path asks what older idea, institution, material constraint, or technical discovery made this system possible.",
+    "curious": "Bitcoin is not one invention in isolation. It is a convergence point where hard money, proof of work, peer-to-peer networking, public-key cryptography, distributed consensus, and a political argument about money all meet.",
+    "studious": "Studious mode placeholder: this node will collect primary sources, protocol references, and historiographic notes on Bitcoin as a synthesis rather than a single-origin invention.",
+    "bitcoinConnection": "This is the point users travel back toward or away from.",
+    "parentIds": [],
+    "childIds": [
+      "bitcoin-as-money",
+      "energy",
+      "cryptography",
+      "computation",
+      "networks",
+      "government-power",
+      "philosophy-time"
+    ],
+    "relatedIds": [
+      "blockchain",
+      "digital-payments",
+      "scarcity"
+    ],
+    "legTags": ["root"],
+    "status": {
+      "draft": "draft",
+      "review": "needs review",
+      "source": "source-needed"
+    }
+  },
+  {
+    "id": "bitcoin-as-money",
+    "title": "Bitcoin as Money",
+    "shortTitle": "Money",
+    "summary": "Bitcoin can be studied as money because it tries to combine scarce issuance, transferable ownership, final settlement, and public verification in one network.",
+    "surface": "Money solves a coordination problem: people need a common way to price, save, settle debts, and move value beyond immediate barter or personal credit. This matters because Bitcoin's monetary claim is not just that it is digital or scarce, but that its rules can be checked by users who do not share one issuer. The limitation is that money also depends on social acceptance, liquidity, law, and trust in surrounding tools. Bitcoin connects to older money by reworking scarcity, settlement, custody, and ledgers. The analogy can mislead if it suggests Bitcoin already functions like national money in every setting.",
+    "curious": "Bitcoin as money is best read as a claim about monetary coordination, not a declaration that every problem has been solved. Money helps people compare values, settle obligations, store purchasing power, and move claims across distance and time. Older systems solved these tasks with commodities, coins, banks, paper claims, state units, private ledgers, and central settlement institutions. Each solution reduced one friction while introducing another: gold was durable but costly to move, bank money was convenient but dependent on trusted intermediaries, and fiat money was flexible but politically managed. Bitcoin rearranges those tradeoffs. It sets issuance by protocol, records ownership in a public ledger, allows self-custody through keys, and lets settlement happen without a bank account. The remaining limits are serious: price volatility, uneven acceptance, technical custody risk, exchange dependence, and legal treatment all shape whether people can use it as money. The analogy to older money is useful only if it stays modest. Bitcoin is not gold with a screen, not a bank, and not a national currency. It is an open monetary network attempting to make some monetary promises verifiable by users rather than guaranteed by an issuer.",
+    "studious": "Sources to add: monetary theory, monetary anthropology, banking history, settlement history, Bitcoin whitepaper, critiques of Bitcoin as money.",
+    "bitcoinConnection": "Bitcoin's money claim rests on whether fixed issuance, public validation, self-custody, and open settlement can coordinate real users without a central monetary issuer.",
+    "parentIds": ["bitcoin"],
+    "childIds": [
+      "scarcity",
+      "settlement",
+      "custody",
+      "ledgers",
+      "trust",
+      "political-control"
+    ],
+    "relatedIds": [
+      "cryptography",
+      "networks",
+      "government-power"
+    ],
+    "legTags": ["money"],
+    "status": {
+      "draft": "draft",
+      "review": "needs review",
+      "source": "source-needed"
+    }
+  },
+  {
+    "id": "scarcity",
+    "title": "Scarcity",
+    "shortTitle": "Scarcity",
+    "summary": "Scarcity gives a monetary good credibility by limiting how easily new units can be created.",
+    "surface": "Scarcity solves the problem of uncontrolled creation. If anyone can make new units cheaply, holders have little reason to trust that the unit will keep meaning over time. This matters for Bitcoin because its supply schedule is meant to be visible and hard to change. But scarcity alone is not money. A scarce object can still be useless, illiquid, unfairly distributed, or hard to verify. Bitcoin connects to older scarce goods by making issuance limited, but the analogy can mislead if scarcity is treated as automatic value. People must still choose to hold, price, and settle with the asset.",
+    "curious": "Scarcity has many forms. Gold's scarcity is geological and practical: it is difficult to find, extract, refine, and counterfeit at scale. Some social monies were scarce because custom, ritual, or authority limited their production and circulation. Modern collectibles can be scarce by convention. Bitcoin tries to make monetary scarcity a public rule: new issuance follows a schedule, the total cap is part of the consensus rules, and every full node can reject blocks that violate those rules. The problem being solved is monetary dilution by easy creation. The limitation is that scarcity only addresses supply, not demand, stability, distribution, usability, or legitimacy. A perfectly scarce asset can still fail as money if few people want it or if using it is too costly. The Bitcoin analogy to gold is helpful because both make supply expansion difficult, but it is also dangerous. Bitcoin's scarcity is social and technical, enforced by software users who coordinate around a rule set. Forks can copy the code, but they cannot automatically copy the shared monetary network. That distinction matters more than a slogan about fixed supply.",
+    "studious": "Sources to add: monetary history, commodity money literature, scarcity and artificial scarcity debates, Bitcoin issuance documentation, critiques of stock-to-flow claims.",
+    "bitcoinConnection": "Bitcoin makes scarcity a consensus rule that users can independently verify, but that rule only matters if a durable network continues to value it.",
+    "parentIds": ["bitcoin-as-money"],
+    "childIds": [
+      "gold",
+      "commodity-money",
+      "costly-production"
+    ],
+    "relatedIds": [
+      "energy",
+      "fiat-money",
+      "proof-of-work-placeholder"
+    ],
+    "legTags": ["money", "energy"],
+    "status": {
+      "draft": "draft",
+      "review": "needs review",
+      "source": "source-needed"
+    }
+  },
+  {
+    "id": "gold",
+    "title": "Gold",
+    "shortTitle": "Gold",
+    "summary": "Gold became a powerful monetary reference because its physical properties made supply expansion, preservation, and verification unusually difficult but manageable.",
+    "surface": "Gold helped solve the problem of finding a durable, scarce, recognizable asset that could carry value across generations and political borders. This matters because Bitcoin often borrows the language of gold to explain digital scarcity. Gold's limit was that it was heavy, unevenly distributed, expensive to assay, and often moved through vaults, paper claims, banks, and states rather than hand-to-hand exchange. Bitcoin connects by replacing physical assay with public verification and replacing mining geology with proof of work. The analogy misleads when it treats gold and Bitcoin as identical: gold is a physical metal with nonmonetary uses, while Bitcoin is a digital ledger asset.",
+    "curious": "Gold's monetary history cannot be reduced to people liking shiny metal. Its usefulness came from a cluster of properties and institutions: it does not corrode easily, large new supplies are hard to produce, small quantities can hold significant value, and skilled assayers can test it. But gold became money through social and political arrangements as much as through chemistry. Coinage, mint marks, vaulting, trade routes, legal standards, banknotes, and international settlement practices all shaped its role. The problem gold helped solve was how to anchor value in something harder to create than ordinary goods or promises. The limitation was practical and institutional. Gold could be clipped, debased, stolen, centralized in vaults, represented by claims, or constrained by policy choices under gold-standard regimes. Bitcoin draws from gold's image of scarcity and costly production, but it changes the verification surface: a user can check Bitcoin's ledger rules with software rather than trusting an assay office or vault statement. Still, the comparison can overreach. Gold's market, industrial demand, jewelry demand, and long institutional history are different from Bitcoin's network effects, security budget, and governance by compatible software.",
+    "studious": "Sources to add: monetary history, gold standard history, coinage and assay references, banking history, comparative notes on gold and Bitcoin.",
+    "bitcoinConnection": "Bitcoin uses gold as a historical reference point for scarce, costly-to-produce money, while changing custody, verification, and settlement into digital network problems.",
+    "parentIds": ["scarcity"],
+    "childIds": [
+      "costly-production",
+      "commodity-money"
+    ],
+    "relatedIds": [
+      "energy",
+      "physical-settlement",
+      "central-banks"
+    ],
+    "legTags": ["money", "energy", "government"],
+    "status": {
+      "draft": "draft",
+      "review": "needs review",
+      "source": "source-needed"
+    }
+  },
+  {
+    "id": "commodity-money",
+    "title": "Commodity Money",
+    "shortTitle": "Commodity Money",
+    "summary": "Commodity money uses socially recognized objects to make exchange, saving, and settlement less dependent on personal credit alone.",
+    "surface": "Commodity money solves the problem of carrying value in an object that others are likely to recognize. Different societies have used metals, shells, grain, salt, cattle, and other goods under different conditions, though that does not mean money simply evolved from barter everywhere. This matters because Bitcoin is often described as commodity-like: no issuer, limited supply, and transferable units. The limitation is that commodities vary in quality, storage cost, transport cost, perishability, and political treatment. Bitcoin connects by imitating supply constraint without being a physical good. The analogy misleads if it assumes Bitcoin has the same nonmonetary demand or material history.",
+    "curious": "Commodity money should be handled carefully. It is not proof of a simple ladder from barter to coins to banks. In many places, credit, tribute, taxation, ritual exchange, and state accounting mattered alongside objects used in trade. The problem commodity money helped solve was that personal promises and local memory did not always travel well. A recognized object could carry value between strangers or across distance when social trust was thin. But the object alone was never enough. Users needed ways to measure quantity, judge quality, store safely, and know whether others would accept it later. Authorities often entered the picture by standardizing weights, minting coins, collecting taxes, or enforcing contracts. Bitcoin echoes commodity money by lacking a discretionary issuer and by making units transferable between people who do not know each other. The limitation is that Bitcoin's scarcity is technical and social, not material. It has no direct use as food, tool, ornament, or industrial input. Calling it commodity money can clarify the no-issuer design, but it can obscure the fact that Bitcoin is also a network, a ledger, and a social consensus.",
+    "studious": "Sources to add: monetary anthropology, commodity money examples, critiques of barter-origin narratives, numismatics, Bitcoin commodity-money comparisons.",
+    "bitcoinConnection": "Bitcoin borrows the commodity-money idea of issuer-independent scarcity, but it replaces material usefulness with network verification and social acceptance.",
+    "parentIds": ["scarcity"],
+    "childIds": [],
+    "relatedIds": [
+      "social-memory",
+      "bearer-assets",
+      "legal-tender"
+    ],
+    "legTags": ["money"],
+    "status": {
+      "draft": "draft",
+      "review": "needs review",
+      "source": "source-needed"
+    }
+  },
+  {
+    "id": "costly-production",
+    "title": "Costly Production",
+    "shortTitle": "Costly Production",
+    "summary": "Costly production makes new monetary units difficult to create, turning expense into a check on easy supply expansion.",
+    "surface": "Costly production solves the problem of cheap imitation. If creating new units is nearly free, the monetary good can be diluted or spammed. Gold mining, minting controls, and Bitcoin proof of work each use cost in different ways. This matters because Bitcoin ties issuance and block production to energy, hardware, and competition. The limitation is that cost does not automatically create value; it can be wasteful, misallocated, or overwhelmed by weak demand. Bitcoin connects by making costly computation part of settlement security. The analogy misleads if mining Bitcoin is treated as the same process as extracting a physical commodity.",
+    "curious": "Costly production gives monetary systems a way to resist effortless creation. With gold, the cost is bound to geology, labor, energy, equipment, and refining. With coinage, cost also includes mint control, law, and trust in standardization. With Bitcoin, the relevant cost is proof of work: miners repeatedly spend computation and electricity to propose valid blocks, while nodes cheaply verify whether the blocks obey the rules. The problem being solved is not just new issuance, but also the ordering of transactions in a public ledger where participants may not trust one another. The limitation is that cost is not a moral proof or a price guarantee. Expending energy does not by itself make a monetary asset valuable, and a high-cost system can still be criticized on environmental, economic, or distributional grounds. It can also centralize around cheap power, specialized hardware, or capital access. Bitcoin's costly production is unlike gold mining in an important way: miners do not dig up pre-existing digital coins. They compete for the right to append blocks and receive newly issued coins plus fees under rules the network enforces.",
+    "studious": "Sources to add: gold mining history, minting history, proof-of-work literature, Bitcoin mining documentation, security budget and energy-use debates.",
+    "bitcoinConnection": "Bitcoin uses costly computation to discipline issuance and make ledger rewriting expensive, while leaving the value of that cost open to economic and ethical debate.",
+    "parentIds": ["scarcity", "gold"],
+    "childIds": [],
+    "relatedIds": [
+      "energy",
+      "computation",
+      "cryptography"
+    ],
+    "legTags": ["money", "energy", "computation"],
+    "status": {
+      "draft": "draft",
+      "review": "needs review",
+      "source": "source-needed"
+    }
+  },
+  {
+    "id": "settlement",
+    "title": "Settlement",
+    "shortTitle": "Settlement",
+    "summary": "Settlement is the moment a payment becomes final enough that the recipient can treat it as done.",
+    "surface": "Money needs more than movement. It needs a way to decide when an exchange is final.",
+    "curious": "Settlement has moved through physical delivery, bank books, clearing houses, card networks, ACH systems, and real-time payment rails. Each system balances speed, reversibility, risk, and authority.",
+    "studious": "Studious mode placeholder: add settlement finality examples from commodity exchange, correspondent banking, central bank reserves, card networks, and Bitcoin confirmations.",
+    "bitcoinConnection": "Bitcoin offers probabilistic settlement through block confirmations rather than institutional reversal rules.",
+    "parentIds": ["bitcoin-as-money"],
+    "childIds": [
+      "digital-payments",
+      "banking-rails",
+      "physical-settlement"
+    ],
+    "relatedIds": [
+      "networks",
+      "blockchain",
+      "banks"
+    ],
+    "legTags": ["money", "networks"],
+    "status": {
+      "draft": "draft",
+      "review": "needs review",
+      "source": "source-needed"
+    }
+  },
+  {
+    "id": "digital-payments",
+    "title": "Digital Payments",
+    "shortTitle": "Digital Payments",
+    "summary": "Digital payments made value movement feel instant while hiding layers of messaging, clearing, credit, and settlement.",
+    "surface": "Cards, online banking, wire transfers, and payment apps show that money can move through messages long before final settlement happens.",
+    "curious": "Digital payments trained users to expect global speed, but most systems remain permissioned, reversible, and dependent on banks or platform operators.",
+    "studious": "Studious mode placeholder: map card authorization, clearing, settlement, ACH, wires, e-money, and early internet payment experiments.",
+    "bitcoinConnection": "Bitcoin inherits the digital user expectation but changes the trust model: the network validates transfer rather than a payment company alone.",
+    "parentIds": ["settlement"],
+    "childIds": [],
+    "relatedIds": [
+      "networks",
+      "computation",
+      "banking-rails"
+    ],
+    "legTags": ["money", "networks", "computation"],
+    "status": {
+      "draft": "draft",
+      "review": "needs review",
+      "source": "source-needed"
+    }
+  },
+  {
+    "id": "banking-rails",
+    "title": "Banking Rails",
+    "shortTitle": "Banking Rails",
+    "summary": "Banking rails are the institutional pathways that route claims, messages, and settlement between accounts.",
+    "surface": "Banks, clearing houses, correspondent networks, and central bank accounts make most modern payments possible.",
+    "curious": "Banking rails reveal that much of money is accounting plus permission. Transfers often update claims inside institutions before base settlement occurs.",
+    "studious": "Studious mode placeholder: add examples from correspondent banking, clearing houses, central bank reserves, SWIFT messaging, ACH, and RTGS systems.",
+    "bitcoinConnection": "Bitcoin offers a public settlement rail that does not require users to open accounts inside the same banking hierarchy.",
+    "parentIds": ["settlement"],
+    "childIds": [],
+    "relatedIds": [
+      "banks",
+      "central-banks",
+      "networks"
+    ],
+    "legTags": ["money", "networks", "government"],
+    "status": {
+      "draft": "draft",
+      "review": "needs review",
+      "source": "source-needed"
+    }
+  },
+  {
+    "id": "physical-settlement",
+    "title": "Physical Settlement",
+    "shortTitle": "Physical Settlement",
+    "summary": "Physical settlement finalizes exchange by delivering the thing itself: coin, bullion, cash, or commodity.",
+    "surface": "Before abstract settlement rails, final payment often meant handing over the bearer asset.",
+    "curious": "Physical settlement can be simple between nearby people and hard across distance. That difficulty encourages warehouses, banks, paper claims, and eventually digital ledgers.",
+    "studious": "Studious mode placeholder: compare cash finality, bullion delivery, warehouse receipts, bills of exchange, and the cost of distance.",
+    "bitcoinConnection": "Bitcoin aims for bearer-like settlement at network distance without physically moving an object.",
+    "parentIds": ["settlement"],
+    "childIds": [],
+    "relatedIds": [
+      "bearer-assets",
+      "gold",
+      "paper-claims"
+    ],
+    "legTags": ["money"],
+    "status": {
+      "draft": "draft",
+      "review": "needs review",
+      "source": "source-needed"
+    }
+  },
+  {
+    "id": "custody",
+    "title": "Custody",
+    "shortTitle": "Custody",
+    "summary": "Custody asks who controls the money and what must be trusted to keep or move it.",
+    "surface": "People can hold money themselves, rely on custodians, or hold claims against someone else.",
+    "curious": "Custody is a quiet political technology. It changes who can freeze assets, lose assets, lend assets, rehypothecate assets, or demand identification before transfer.",
+    "studious": "Studious mode placeholder: add notes on safekeeping, banking custody, bearer instruments, private keys, multisig, and legal custody.",
+    "bitcoinConnection": "Bitcoin makes self-custody possible through private keys, while exchanges and custodians recreate older trust patterns.",
+    "parentIds": ["bitcoin-as-money"],
+    "childIds": [
+      "bearer-assets",
+      "banks",
+      "paper-claims"
+    ],
+    "relatedIds": [
+      "cryptography",
+      "legal-tender",
+      "trust"
+    ],
+    "legTags": ["money", "cryptography", "government"],
+    "status": {
+      "draft": "draft",
+      "review": "needs review",
+      "source": "source-needed"
+    }
+  },
+  {
+    "id": "bearer-assets",
+    "title": "Bearer Assets",
+    "shortTitle": "Bearer Assets",
+    "summary": "Bearer assets are controlled by whoever possesses the object or secret that authorizes transfer.",
+    "surface": "Cash, coins, bearer bonds, and private keys share a basic pattern: possession matters.",
+    "curious": "Bearer assets reduce reliance on account keepers but increase personal responsibility. They make censorship harder and loss more final.",
+    "studious": "Studious mode placeholder: distinguish physical bearer instruments, legal bearer claims, cryptographic bearer control, and custody edge cases.",
+    "bitcoinConnection": "A Bitcoin private key behaves like a digital bearer control: whoever can sign can spend.",
+    "parentIds": ["custody"],
+    "childIds": [],
+    "relatedIds": [
+      "physical-settlement",
+      "cryptography",
+      "trust"
+    ],
+    "legTags": ["money", "cryptography"],
+    "status": {
+      "draft": "draft",
+      "review": "needs review",
+      "source": "source-needed"
+    }
+  },
+  {
+    "id": "banks",
+    "title": "Banks",
+    "shortTitle": "Banks",
+    "summary": "Banks keep accounts, extend credit, hold deposits, and turn custody into a broader monetary institution.",
+    "surface": "Banks make payments convenient by keeping books and honoring claims, but they also introduce trust and control.",
+    "curious": "Banks sit between custody, settlement, ledgers, and political power. They can safeguard assets, create deposit money through lending, and become channels for state policy.",
+    "studious": "Studious mode placeholder: add fractional reserves, deposit banking, bank runs, correspondent banking, regulation, and central bank backstops.",
+    "bitcoinConnection": "Bitcoin can bypass bank accounts for settlement, but many users still reach Bitcoin through banked exchanges.",
+    "parentIds": ["custody"],
+    "childIds": [],
+    "relatedIds": [
+      "banking-rails",
+      "paper-claims",
+      "central-banks",
+      "trust"
+    ],
+    "legTags": ["money", "government"],
+    "status": {
+      "draft": "draft",
+      "review": "needs review",
+      "source": "source-needed"
+    }
+  },
+  {
+    "id": "paper-claims",
+    "title": "Paper Claims",
+    "shortTitle": "Paper Claims",
+    "summary": "Paper claims let people transfer promises to money or goods without moving the underlying asset each time.",
+    "surface": "Receipts, notes, checks, and bills of exchange make payment lighter than moving metal or goods.",
+    "curious": "Paper claims expand monetary reach but add a question: is the claim redeemable, who guarantees it, and what happens if everyone asks at once?",
+    "studious": "Studious mode placeholder: add warehouse receipts, banknotes, bills of exchange, checks, convertibility, and suspension of redemption.",
+    "bitcoinConnection": "Bitcoin separates on-chain control from off-chain claims, making exchange balances and wrapped claims important historical echoes.",
+    "parentIds": ["custody"],
+    "childIds": [],
+    "relatedIds": [
+      "physical-settlement",
+      "banks",
+      "fiat-money"
+    ],
+    "legTags": ["money", "government"],
+    "status": {
+      "draft": "draft",
+      "review": "needs review",
+      "source": "source-needed"
+    }
+  },
+  {
+    "id": "ledgers",
+    "title": "Ledgers",
+    "shortTitle": "Ledgers",
+    "summary": "Ledgers are shared memory systems for who owns what and which transfers have happened.",
+    "surface": "A ledger can be clay, paper, a bank database, or a blockchain. It lets money exist as records rather than only objects.",
+    "curious": "Ledgers shift money from possession alone to remembered relationships. The central problem becomes who can write, verify, correct, and trust the record.",
+    "studious": "Studious mode placeholder: add accounting history, record media, audit methods, distributed ledgers, and debates about money as social credit.",
+    "bitcoinConnection": "Bitcoin is a ledger-first monetary system: the coin exists as spendable entries in a public chain of records.",
+    "parentIds": ["bitcoin-as-money"],
+    "childIds": [
+      "blockchain",
+      "double-entry-bookkeeping",
+      "social-memory"
+    ],
+    "relatedIds": [
+      "computation",
+      "networks",
+      "settlement"
+    ],
+    "legTags": ["money", "computation", "networks"],
+    "status": {
+      "draft": "draft",
+      "review": "needs review",
+      "source": "source-needed"
+    }
+  },
+  {
+    "id": "blockchain",
+    "title": "Blockchain",
+    "shortTitle": "Blockchain",
+    "summary": "A blockchain links records into a costly-to-rewrite sequence that many participants can verify.",
+    "surface": "Bitcoin's blockchain is a public ledger ordered into blocks and secured by proof of work.",
+    "curious": "The blockchain is not just a database. It combines timestamping, hashing, proof of work, economic incentives, networking, and validation rules into an append-only monetary history.",
+    "studious": "Studious mode placeholder: add block structure, merkle trees, hash chains, timestamping, proof of work, UTXOs, and reorganization risk.",
+    "bitcoinConnection": "Bitcoin uses the blockchain to decide which coins exist, which have moved, and which transaction history the network accepts.",
+    "parentIds": ["ledgers"],
+    "childIds": [],
+    "relatedIds": [
+      "cryptography",
+      "computation",
+      "networks",
+      "settlement"
+    ],
+    "legTags": ["money", "cryptography", "computation", "networks"],
+    "status": {
+      "draft": "draft",
+      "review": "needs review",
+      "source": "source-needed"
+    }
+  },
+  {
+    "id": "double-entry-bookkeeping",
+    "title": "Double-entry Bookkeeping",
+    "shortTitle": "Double-entry",
+    "summary": "Double-entry bookkeeping records each transaction as balanced changes across accounts.",
+    "surface": "Double-entry bookkeeping gave merchants and institutions a disciplined way to track claims, debts, assets, and errors.",
+    "curious": "The deeper lesson is not that Bitcoin uses double-entry directly. It is that money becomes durable when record systems can be audited, reconciled, and socially trusted.",
+    "studious": "Studious mode placeholder: add Luca Pacioli, merchant accounting, auditability, account abstraction, and the difference between account-based and UTXO ledgers.",
+    "bitcoinConnection": "Bitcoin inherits the ledger problem but solves it with public validation rather than private books and auditors.",
+    "parentIds": ["ledgers"],
+    "childIds": [],
+    "relatedIds": [
+      "banks",
+      "computation",
+      "social-memory"
+    ],
+    "legTags": ["money", "computation"],
+    "status": {
+      "draft": "draft",
+      "review": "needs review",
+      "source": "source-needed"
+    }
+  },
+  {
+    "id": "social-memory",
+    "title": "Social Memory",
+    "shortTitle": "Social Memory",
+    "summary": "Social memory is the shared human record of obligations, reputation, credit, and past exchange.",
+    "surface": "Before formal ledgers, communities remembered who owed what, who could be trusted, and which promises mattered.",
+    "curious": "Money can be understood as a technology for memory. Coins, ledgers, bank accounts, and blockchains all stabilize claims that would otherwise depend on fragile social recall.",
+    "studious": "Studious mode placeholder: add anthropology of debt and money, credit theories, tally sticks, oral records, and limits of barter narratives.",
+    "bitcoinConnection": "Bitcoin mechanizes monetary memory into a public ledger that does not rely on one community's oral trust.",
+    "parentIds": ["ledgers", "trust"],
+    "childIds": [],
+    "relatedIds": [
+      "philosophy-time",
+      "commodity-money",
+      "double-entry-bookkeeping"
+    ],
+    "legTags": ["money", "philosophy"],
+    "status": {
+      "draft": "draft",
+      "review": "needs review",
+      "source": "source-needed"
+    }
+  },
+  {
+    "id": "trust",
+    "title": "Trust",
+    "shortTitle": "Trust",
+    "summary": "Trust is the problem money systems solve, relocate, or disguise.",
+    "surface": "Every monetary system asks what users must trust: people, vaults, rulers, banks, math, incentives, or shared memory.",
+    "curious": "Bitcoin does not remove trust completely. It narrows and redirects trust toward open rules, cryptographic verification, software, economic incentives, and the social choice to run compatible nodes.",
+    "studious": "Studious mode placeholder: add trust-minimization, social trust, institutional trust, verification, and critiques of trustless language.",
+    "bitcoinConnection": "Bitcoin's design promise is not no trust; it is less mandatory trust in issuers, custodians, and payment intermediaries.",
+    "parentIds": ["bitcoin-as-money"],
+    "childIds": [
+      "social-memory"
+    ],
+    "relatedIds": [
+      "bearer-assets",
+      "banks",
+      "legal-tender",
+      "cryptography"
+    ],
+    "legTags": ["money", "philosophy", "cryptography"],
+    "status": {
+      "draft": "draft",
+      "review": "needs review",
+      "source": "source-needed"
+    }
+  },
+  {
+    "id": "political-control",
+    "title": "Political Control",
+    "shortTitle": "Political Control",
+    "summary": "Political control shapes money by defining units, enforcing debts, regulating institutions, and deciding who may issue or access settlement.",
+    "surface": "Political control solves real coordination problems: a society needs units of account, tax collection, contract enforcement, bank rules, and crisis tools. This matters because money is never only a neutral object or a payment technology. The limitation is that the same powers can concentrate discretion, censor transfers, inflate supply, or privilege some institutions over others. Bitcoin connects to this history by making issuance and settlement rules harder for any single authority to change. The analogy can mislead if it becomes a simple government-bad story. States can provide monetary stability and legal order, even while their control creates risks Bitcoin was designed to reduce.",
+    "curious": "Political authority has long shaped monetary systems. Rulers and states have minted coins, named units, collected taxes, chartered banks, suspended convertibility, controlled capital movement, enforced sanctions, and managed access to settlement infrastructure. These powers help solve problems that private exchange alone may not solve: common standards, fraud control, public finance, emergency liquidity, and legal finality. The remaining limitation is discretion. Monetary authority can be used to stabilize a system, but it can also be used to debase money, rescue favored institutions, monitor citizens, or exclude disfavored participants. Bitcoin's design is a response to that concentration of authority. It does not ask a central issuer to manage supply, and it lets anyone who can connect to the network attempt to receive or send transactions. But the political analogy should stay honest. Bitcoin does not end politics; it moves some disputes into software rules, mining incentives, exchange regulation, custody law, taxation, and social consensus about which rules to run. Nor does it prove that government monetary roles are always illegitimate. It shows one attempt to narrow the places where permission and discretion are required.",
+    "studious": "Sources to add: monetary sovereignty, chartalism, legal tender, central banking history, capital controls, sanctions, Bitcoin whitepaper and governance debates.",
+    "bitcoinConnection": "Bitcoin is politically significant because it tries to make monetary issuance and base settlement verifiable by users rather than discretionary powers granted to an issuer.",
+    "parentIds": ["bitcoin-as-money"],
+    "childIds": [
+      "fiat-money",
+      "central-banks",
+      "legal-tender"
+    ],
+    "relatedIds": [
+      "government-power",
+      "banks",
+      "scarcity"
+    ],
+    "legTags": ["money", "government"],
+    "status": {
+      "draft": "draft",
+      "review": "needs review",
+      "source": "source-needed"
+    }
+  },
+  {
+    "id": "fiat-money",
+    "title": "Fiat Money",
+    "shortTitle": "Fiat Money",
+    "summary": "Fiat money is money whose acceptance rests on law, institutions, taxation, banking systems, and public confidence rather than redemption into a commodity.",
+    "surface": "Fiat money solves the problem of monetary flexibility. A state and banking system can expand or contract money and credit without being tied to the available stock of a metal. This matters because modern economies rely on elastic liquidity, public finance, and central-bank policy. The limitation is that fiat money depends on institutional credibility: poor governance, excessive issuance, political pressure, or banking failure can damage trust. Bitcoin connects by offering a monetary rule set that is not redeemable in a commodity and not issued by a state. The analogy misleads if fiat is dismissed as fake; fiat money is real money when people can use it to pay, price, save, and settle obligations.",
+    "curious": "Fiat money is often misunderstood. It is not money with no backing at all; it is backed by a web of law, taxation, banking infrastructure, productive capacity, state authority, and social expectation. The problem it helped solve was the rigidity of commodity-linked regimes. Governments and central banks wanted more room to respond to crises, manage bank liquidity, finance public obligations, and adjust monetary conditions as economies changed. That flexibility is also the main limitation. Fiat systems depend on judgment, institutional discipline, and political legitimacy. They can support stability when managed well, but they can also produce inflation, financial repression, distributional conflict, or loss of confidence when managed poorly. They also make ordinary users depend on institutions whose policy goals may not match every holder's interests. Bitcoin is a deliberate contrast: its issuance schedule is not adjusted by a policy committee, and its base asset is not a liability of a central bank. Still, the comparison can be misleading. Bitcoin is not automatically stable just because its supply is limited, and fiat money is not automatically worthless because it lacks commodity redemption. The real contrast is between discretionary monetary governance and rule-bound monetary issuance.",
+    "studious": "Sources to add: fiat money history, gold-standard transition, central banking, state theory of money, inflation history, Bitcoin monetary policy references.",
+    "bitcoinConnection": "Bitcoin contrasts with fiat money by replacing discretionary issuance with a public supply rule, while still depending on voluntary demand and surrounding legal treatment.",
+    "parentIds": ["political-control"],
+    "childIds": [],
+    "relatedIds": [
+      "central-banks",
+      "legal-tender",
+      "paper-claims"
+    ],
+    "legTags": ["money", "government"],
+    "status": {
+      "draft": "draft",
+      "review": "needs review",
+      "source": "source-needed"
+    }
+  },
+  {
+    "id": "central-banks",
+    "title": "Central Banks",
+    "shortTitle": "Central Banks",
+    "summary": "Central banks manage base money, bank reserves, payment settlement, lender-of-last-resort support, and monetary policy in modern fiat systems.",
+    "surface": "Central banks solve problems created by banking systems that promise liquidity while making loans: bank runs, payment settlement, emergency backstops, and economy-wide monetary conditions. This matters because most modern money depends on commercial banks and central-bank reserves beneath them. The limitation is concentrated discretion. Central banks can stabilize crises, but their choices affect credit, asset prices, inflation, savings, and which institutions receive support. Bitcoin connects by removing a central bank from its issuance and base settlement layer. The analogy misleads if it pretends Bitcoin has no governance pressures; it has miners, nodes, developers, exchanges, and users, even without a policy committee.",
+    "curious": "Central banks are not simply money printers, and they are not merely political villains. They emerged around practical problems: note issuance, government finance, bank settlement, financial panics, and the need for an institution that could provide liquidity when private banks could not. In a modern system, central banks influence short-term interest rates, issue or manage base money, supervise or interact with payment systems, and act as lenders of last resort. These functions solve genuine coordination failures, especially when many private banks are linked through credit and settlement promises. The limitation is that central banking concentrates judgment at the center of the monetary system. Policy can be late, excessive, captured, unevenly distributed, or constrained by political demands. Bitcoin is built as a contrast at the base layer: no committee changes the issuance schedule, no central balance sheet provides emergency liquidity, and settlement validity is checked by network rules. But the analogy should not become too tidy. Bitcoin users still face market cycles, liquidity shocks, custodial failures, and regulatory pressure. Removing a central bank removes one kind of discretion, not every form of monetary coordination.",
+    "studious": "Sources to add: central bank history, lender-of-last-resort literature, reserve settlement, monetary policy operations, payment systems, Bitcoin governance and mining references.",
+    "bitcoinConnection": "Bitcoin removes central-bank discretion from issuance and base settlement, but it does not remove the broader economic effects central banks have on markets around it.",
+    "parentIds": ["political-control"],
+    "childIds": [],
+    "relatedIds": [
+      "banks",
+      "fiat-money",
+      "government-power",
+      "banking-rails"
+    ],
+    "legTags": ["money", "government"],
+    "status": {
+      "draft": "draft",
+      "review": "needs review",
+      "source": "source-needed"
+    }
+  },
+  {
+    "id": "legal-tender",
+    "title": "Legal Tender",
+    "shortTitle": "Legal Tender",
+    "summary": "Legal tender rules define which money a legal system recognizes for discharging certain debts and obligations.",
+    "surface": "Legal tender solves a dispute problem: when a debt is owed, courts need a recognized way to say payment has been made. It can also support taxation, public accounting, and a shared unit of account. This matters because official money is partly a legal institution, not just a market convention. The limitation is that legal status does not guarantee purchasing power, fairness, or everyday acceptance in every transaction. Bitcoin connects because it usually relies on voluntary acceptance rather than legal-tender privilege. The analogy misleads if legal tender is treated as magic coercion; law can anchor money, but users, prices, infrastructure, and confidence still matter.",
+    "curious": "Legal tender is narrower and more interesting than the phrase often suggests. In many settings, it does not mean every shop must accept every form of official money in every circumstance. It usually concerns the settlement of debts under a jurisdiction's law, and it sits beside tax rules, contract law, banking regulation, and public accounting. The problem being solved is legal finality: if two parties disagree about payment, the legal system needs a recognized unit and medium for discharging obligations. The limitation is that legal recognition cannot by itself create a healthy monetary system. A legally privileged currency can still lose purchasing power, become inconvenient, or depend on fragile institutions. Bitcoin's connection is clear because it normally operates without this privilege. A merchant, saver, or sender accepts Bitcoin because of expected liquidity, network access, ideology, need, or speculation, not because most courts require it for debt settlement. But the analogy can mislead in both directions. Legal tender is not the whole source of fiat value, and Bitcoin's lack of legal-tender status does not make it irrelevant. It means its monetary role has to be earned through use, infrastructure, and trust in the rules.",
+    "studious": "Sources to add: legal tender doctrine, tax receivability, private contract law, fiat money history, monetary sovereignty, Bitcoin legal status overviews.",
+    "bitcoinConnection": "Bitcoin usually depends on voluntary acceptance and network liquidity rather than legal-tender rules, which makes its monetary status more market-driven and uneven.",
+    "parentIds": ["political-control"],
+    "childIds": [],
+    "relatedIds": [
+      "government-power",
+      "fiat-money",
+      "trust"
+    ],
+    "legTags": ["money", "government"],
+    "status": {
+      "draft": "draft",
+      "review": "needs review",
+      "source": "source-needed"
+    }
+  },
+  {
+    "id": "energy",
+    "title": "Energy",
+    "shortTitle": "Energy",
+    "summary": "Placeholder leg for the energy history behind proof of work, mining, industrial power, and thermodynamic cost.",
+    "surface": "Energy will trace backward from Bitcoin mining into electricity, computation, industrial power, and the idea that cost can secure a monetary system.",
+    "curious": "This leg will connect proof of work to costly production, gold mining, electricity markets, and the broader history of energy as disciplined expenditure.",
+    "studious": "Studious mode placeholder: future sources and detailed essays.",
+    "bitcoinConnection": "Bitcoin uses energy through proof of work to make ledger rewriting expensive.",
+    "parentIds": ["bitcoin"],
+    "childIds": [],
+    "relatedIds": [
+      "costly-production",
+      "gold",
+      "scarcity"
+    ],
+    "legTags": ["energy"],
+    "status": {
+      "draft": "placeholder",
+      "review": "not started",
+      "source": "unsourced"
+    }
+  },
+  {
+    "id": "cryptography",
+    "title": "Cryptography",
+    "shortTitle": "Cryptography",
+    "summary": "Placeholder leg for signatures, hashing, public keys, privacy, and proof systems.",
+    "surface": "Cryptography will trace the tools that let Bitcoin users prove ownership, verify history, and coordinate without private account keepers.",
+    "curious": "The leg will connect public-key cryptography, hash functions, digital signatures, cypherpunk practice, and the political meaning of private communication.",
+    "studious": "Studious mode placeholder: future sources and detailed essays.",
+    "bitcoinConnection": "Bitcoin relies on cryptographic signatures and hash commitments for custody, validation, and block linking.",
+    "parentIds": ["bitcoin"],
+    "childIds": [],
+    "relatedIds": [
+      "blockchain",
+      "bearer-assets",
+      "trust"
+    ],
+    "legTags": ["cryptography"],
+    "status": {
+      "draft": "placeholder",
+      "review": "not started",
+      "source": "unsourced"
+    }
+  },
+  {
+    "id": "computation",
+    "title": "Computation",
+    "shortTitle": "Computation",
+    "summary": "Placeholder leg for computers, algorithms, databases, proof of work, and digital state machines.",
+    "surface": "Computation will trace how programmable machines made digital scarcity and automated validation possible.",
+    "curious": "This leg will move through algorithmic thinking, distributed systems, databases, hashcash-like work, and the hardware race behind mining.",
+    "studious": "Studious mode placeholder: future sources and detailed essays.",
+    "bitcoinConnection": "Bitcoin is money implemented as rules run by machines and checked by many independent nodes.",
+    "parentIds": ["bitcoin"],
+    "childIds": [],
+    "relatedIds": [
+      "blockchain",
+      "costly-production",
+      "digital-payments"
+    ],
+    "legTags": ["computation"],
+    "status": {
+      "draft": "placeholder",
+      "review": "not started",
+      "source": "unsourced"
+    }
+  },
+  {
+    "id": "networks",
+    "title": "Networks",
+    "shortTitle": "Networks",
+    "summary": "Placeholder leg for peer-to-peer systems, the internet, payment networks, and distributed coordination.",
+    "surface": "Networks will trace the communication layers that let Bitcoin propagate transactions and blocks without a central clearing hub.",
+    "curious": "This leg will connect banking rails, the internet, gossip networks, peer discovery, protocol design, and the social problem of reaching agreement at distance.",
+    "studious": "Studious mode placeholder: future sources and detailed essays.",
+    "bitcoinConnection": "Bitcoin needs a peer-to-peer network to keep the ledger shared and censorship-resistant.",
+    "parentIds": ["bitcoin"],
+    "childIds": [],
+    "relatedIds": [
+      "settlement",
+      "digital-payments",
+      "blockchain"
+    ],
+    "legTags": ["networks"],
+    "status": {
+      "draft": "placeholder",
+      "review": "not started",
+      "source": "unsourced"
+    }
+  },
+  {
+    "id": "government-power",
+    "title": "Government & Power",
+    "shortTitle": "Gov & Power",
+    "summary": "Placeholder leg for sovereignty, taxation, central banking, legal tender, censorship, and institutional control.",
+    "surface": "Government & Power will trace the relationship between money, law, state capacity, and the ability to control settlement.",
+    "curious": "This leg will connect fiat money, central banks, capital controls, sanctions, surveillance, charters, and political theories of monetary authority.",
+    "studious": "Studious mode placeholder: future sources and detailed essays.",
+    "bitcoinConnection": "Bitcoin is partly designed around resistance to discretionary monetary control and permissioned settlement.",
+    "parentIds": ["bitcoin"],
+    "childIds": [],
+    "relatedIds": [
+      "political-control",
+      "central-banks",
+      "legal-tender"
+    ],
+    "legTags": ["government"],
+    "status": {
+      "draft": "placeholder",
+      "review": "not started",
+      "source": "unsourced"
+    }
+  },
+  {
+    "id": "philosophy-time",
+    "title": "Philosophy & Time",
+    "shortTitle": "Philosophy & Time",
+    "summary": "Placeholder leg for time preference, property, memory, trust, and the philosophy of scarce records.",
+    "surface": "Philosophy & Time will trace the ideas beneath monetary coordination: promises, memory, finality, property, and future value.",
+    "curious": "This leg will connect social memory, settlement finality, time preference, decentralization, and the strange fact that money is a way of moving trust through time.",
+    "studious": "Studious mode placeholder: future sources and detailed essays.",
+    "bitcoinConnection": "Bitcoin turns time into ordered blocks and asks users to trust a shared history they can verify.",
+    "parentIds": ["bitcoin"],
+    "childIds": [],
+    "relatedIds": [
+      "social-memory",
+      "trust",
+      "settlement"
+    ],
+    "legTags": ["philosophy"],
+    "status": {
+      "draft": "placeholder",
+      "review": "not started",
+      "source": "unsourced"
+    }
+  }
+]

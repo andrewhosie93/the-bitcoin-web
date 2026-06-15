@@ -1,0 +1,14 @@
+{
+  "rootId": "bitcoin",
+  "moneyEntryId": "bitcoin-as-money",
+  "mainLegIds": [
+    "bitcoin-as-money",
+    "energy",
+    "cryptography",
+    "computation",
+    "networks",
+    "government-power",
+    "philosophy-time"
+  ],
+  "homepageIntro": "Bitcoin did not appear from nowhere. It is the convergence of older struggles: money and memory, energy and work, secrecy and verification, states and power, networks and trust, scarcity and time. Choose a strand and trace it backwards."
+}
