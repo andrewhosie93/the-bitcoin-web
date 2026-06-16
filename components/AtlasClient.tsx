@@ -130,16 +130,42 @@ const explanationModes: Array<{ id: ExplanationMode; label: string }> = [
   { id: "studious", label: "Sources" }
 ];
 
+const SVG_COORD_PRECISION = 1_000_000;
+
 function cx(...classes: Array<string | false | null | undefined>) {
   return classes.filter(Boolean).join(" ");
 }
 
+function svgNumber(value: number) {
+  if (!Number.isFinite(value)) {
+    return 0;
+  }
+
+  const rounded = Math.round(value * SVG_COORD_PRECISION) / SVG_COORD_PRECISION;
+  return Object.is(rounded, -0) ? 0 : rounded;
+}
+
+function svgPoint(point: Point): Point {
+  return {
+    x: svgNumber(point.x),
+    y: svgNumber(point.y)
+  };
+}
+
+function formatSvgNumber(value: number) {
+  return svgNumber(value).toString();
+}
+
+function formatTransformOrigin(point: Point) {
+  return `${formatSvgNumber(point.x)}px ${formatSvgNumber(point.y)}px`;
+}
+
 function polar(cxValue: number, cyValue: number, radius: number, angleDeg: number) {
   const angle = (angleDeg * Math.PI) / 180;
-  return {
+  return svgPoint({
     x: cxValue + radius * Math.cos(angle),
     y: cyValue + radius * Math.sin(angle)
-  };
+  });
 }
 
 function clamp(value: number, min: number, max: number) {
@@ -154,14 +180,14 @@ function trimConnector(from: Point, to: Point, fromRadius: number, toRadius: num
   const uy = dy / length;
 
   return {
-    from: {
+    from: svgPoint({
       x: from.x + ux * fromRadius,
       y: from.y + uy * fromRadius
-    },
-    to: {
+    }),
+    to: svgPoint({
       x: to.x - ux * toRadius,
       y: to.y - uy * toRadius
-    }
+    })
   };
 }
 
@@ -354,8 +380,8 @@ function getStrandLabelGeometry(strand: StrandModel, compact: boolean) {
     align,
     height,
     width,
-    x,
-    y
+    x: svgNumber(x),
+    y: svgNumber(y)
   };
 }
 
@@ -412,7 +438,7 @@ function curvePath(from: Point, to: Point, bend = 0) {
     y: midY + (dx / length) * bend
   };
 
-  return `M ${from.x} ${from.y} Q ${control.x} ${control.y} ${to.x} ${to.y}`;
+  return `M ${formatSvgNumber(from.x)} ${formatSvgNumber(from.y)} Q ${formatSvgNumber(control.x)} ${formatSvgNumber(control.y)} ${formatSvgNumber(to.x)} ${formatSvgNumber(to.y)}`;
 }
 
 function makeNodeMap(nodes: AtlasNode[]) {
@@ -700,8 +726,8 @@ export default function AtlasClient({ atlas }: AtlasClientProps) {
           const satellites = [0.28, 0.52, 0.78].map((progress, satelliteIndex) => {
             const offset = ((index + satelliteIndex) % 2 === 0 ? 1 : -1) * (12 + satelliteIndex * 8);
             return {
-              x: WORLD.center.x + (end.x - WORLD.center.x) * progress + Math.cos(perpendicular) * offset,
-              y: WORLD.center.y + (end.y - WORLD.center.y) * progress + Math.sin(perpendicular) * offset,
+              x: svgNumber(WORLD.center.x + (end.x - WORLD.center.x) * progress + Math.cos(perpendicular) * offset),
+              y: svgNumber(WORLD.center.y + (end.y - WORLD.center.y) * progress + Math.sin(perpendicular) * offset),
               delay: index * 0.16 + satelliteIndex * 0.24
             };
           });
@@ -1067,7 +1093,7 @@ export default function AtlasClient({ atlas }: AtlasClientProps) {
 
           <rect width={WORLD.width} height={WORLD.height} fill="transparent" />
 
-          <g transform={`translate(${camera.x} ${camera.y}) scale(${camera.scale})`}>
+          <g transform={`translate(${formatSvgNumber(camera.x)} ${formatSvgNumber(camera.y)}) scale(${formatSvgNumber(camera.scale)})`}>
             <BackgroundWeb strands={strands} view={view} />
 
             <g pointerEvents={view === "home" ? "auto" : "none"} aria-hidden={view === "home" ? undefined : true}>
@@ -1247,8 +1273,8 @@ function BackgroundWeb({ strands, view }: { strands: StrandModel[]; view: AtlasV
         strand.satellites.map((satellite, satelliteIndex) => (
           <circle
             key={`dim-${strand.id}-${satelliteIndex}`}
-            cx={satellite.x + (satelliteIndex - 1) * 18}
-            cy={satellite.y + (strandIndex % 2 === 0 ? 12 : -10)}
+            cx={svgNumber(satellite.x + (satelliteIndex - 1) * 18)}
+            cy={svgNumber(satellite.y + (strandIndex % 2 === 0 ? 12 : -10))}
             r={satelliteIndex === 1 ? 1.9 : 1.2}
             fill="rgba(178,196,209,0.16)"
           />
@@ -1329,8 +1355,8 @@ function MainStrand({
       {strand.satellites.map((satellite, satelliteIndex) => (
         <motion.circle
           key={`${strand.id}-${satelliteIndex}`}
-          cx={satellite.x}
-          cy={satellite.y}
+          cx={svgNumber(satellite.x)}
+          cy={svgNumber(satellite.y)}
           r={active ? 3.2 : 2.15}
           fill={active ? "rgba(239,184,87,0.78)" : "rgba(187,205,217,0.34)"}
           animate={
@@ -1353,16 +1379,16 @@ function MainStrand({
       {isHome ? (
         <>
           <motion.circle
-            cx={strand.end.x}
-            cy={strand.end.y}
+            cx={svgNumber(strand.end.x)}
+            cy={svgNumber(strand.end.y)}
             r={endpointGlowRadius}
             fill={active ? "rgba(232,168,72,0.12)" : "rgba(232,168,72,0.025)"}
             stroke={active ? "rgba(232,168,72,0.28)" : "rgba(218,230,239,0.055)"}
             animate={reduceMotion ? { opacity: active ? 0.86 : 0.42 } : { opacity: active ? [0.62, 0.95, 0.62] : [0.2, 0.38, 0.2] }}
             transition={{ duration: 4.8, repeat: reduceMotion ? 0 : Infinity, ease: "easeInOut" }}
           />
-          <circle cx={strand.end.x} cy={strand.end.y} r={endpointVisibleRadius} fill={active ? "rgba(239,184,87,0.88)" : "rgba(196,211,222,0.34)"} />
-          <circle cx={strand.end.x} cy={strand.end.y} r={compact ? 34 : 30} fill="rgba(255,255,255,0.001)" />
+          <circle cx={svgNumber(strand.end.x)} cy={svgNumber(strand.end.y)} r={endpointVisibleRadius} fill={active ? "rgba(239,184,87,0.88)" : "rgba(196,211,222,0.34)"} />
+          <circle cx={svgNumber(strand.end.x)} cy={svgNumber(strand.end.y)} r={compact ? 34 : 30} fill="rgba(255,255,255,0.001)" />
         </>
       ) : null}
 
@@ -1425,7 +1451,7 @@ function BitcoinOrb({
           fill="url(#orbHaze)"
           animate={reduceMotion ? { opacity: active ? 0.72 : 0.42 } : { opacity: active ? [0.45, 0.78, 0.45] : 0.42, scale: active ? [0.96, 1.04, 0.96] : 0.86 }}
           transition={{ duration: 6.2, repeat: reduceMotion ? 0 : Infinity, ease: "easeInOut" }}
-          style={{ transformOrigin: `${WORLD.center.x}px ${WORLD.center.y}px` }}
+          style={{ transformOrigin: formatTransformOrigin(WORLD.center) }}
         />
         <motion.circle
           cx={WORLD.center.x}
@@ -1436,7 +1462,7 @@ function BitcoinOrb({
           strokeWidth="1"
           animate={reduceMotion ? { opacity: 0.18 } : { opacity: active ? [0.08, 0.28, 0.08] : 0.07, scale: active ? [0.92, 1.12, 0.92] : 0.86 }}
           transition={{ duration: 7.4, repeat: reduceMotion ? 0 : Infinity, ease: "easeInOut" }}
-          style={{ transformOrigin: `${WORLD.center.x}px ${WORLD.center.y}px` }}
+          style={{ transformOrigin: formatTransformOrigin(WORLD.center) }}
         />
         <motion.circle
           cx={WORLD.center.x}
@@ -1447,7 +1473,7 @@ function BitcoinOrb({
           strokeWidth="0.8"
           animate={reduceMotion ? { opacity: 0.2 } : { opacity: active ? [0.1, 0.32, 0.1] : 0.08, scale: active ? [1.04, 0.92, 1.04] : 0.9 }}
           transition={{ duration: 5.8, repeat: reduceMotion ? 0 : Infinity, ease: "easeInOut" }}
-          style={{ transformOrigin: `${WORLD.center.x}px ${WORLD.center.y}px` }}
+          style={{ transformOrigin: formatTransformOrigin(WORLD.center) }}
         />
         <motion.circle
           cx={WORLD.center.x}
@@ -1458,7 +1484,7 @@ function BitcoinOrb({
           strokeWidth="1.4"
           animate={reduceMotion ? { scale: 1 } : { scale: active ? [1, 1.035, 1] : 0.9 }}
           transition={{ duration: 4.8, repeat: reduceMotion ? 0 : Infinity, ease: "easeInOut" }}
-          style={{ transformOrigin: `${WORLD.center.x}px ${WORLD.center.y}px` }}
+          style={{ transformOrigin: formatTransformOrigin(WORLD.center) }}
         />
         <circle cx={WORLD.center.x} cy={WORLD.center.y} r="78" fill="url(#orbInnerFire)" opacity="0.88" />
         <circle cx={WORLD.center.x - 15} cy={WORLD.center.y - 18} r="48" fill="url(#orbGlass)" opacity="0.72" />
@@ -1480,12 +1506,12 @@ function ComingSoonMarker({ strand, reduceMotion }: { strand: StrandModel; reduc
   const angle = (strand.angle * Math.PI) / 180;
   const width = strand.id === "government-power" || strand.id === "philosophy-time" ? 172 : 142;
   const height = 58;
-  const anchor = {
+  const anchor = svgPoint({
     x: strand.end.x + Math.cos(angle) * 58,
     y: strand.end.y + Math.sin(angle) * 58
-  };
-  const x = anchor.x - width / 2;
-  const y = anchor.y - height / 2;
+  });
+  const x = svgNumber(anchor.x - width / 2);
+  const y = svgNumber(anchor.y - height / 2);
 
   return (
     <motion.g
@@ -1495,15 +1521,15 @@ function ComingSoonMarker({ strand, reduceMotion }: { strand: StrandModel; reduc
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: reduceMotion ? 1 : 0.96 }}
       transition={{ duration: reduceMotion ? 0.12 : 0.28 }}
-      style={{ transformOrigin: `${anchor.x}px ${anchor.y}px` }}
+      style={{ transformOrigin: formatTransformOrigin(anchor) }}
     >
-      <circle cx={strand.end.x} cy={strand.end.y} r="32" fill="rgba(232,168,72,0.08)" stroke="rgba(232,168,72,0.24)" strokeWidth="0.8" />
-      <circle cx={strand.end.x} cy={strand.end.y} r="4.5" fill="rgba(239,184,87,0.82)" />
+      <circle cx={svgNumber(strand.end.x)} cy={svgNumber(strand.end.y)} r="32" fill="rgba(232,168,72,0.08)" stroke="rgba(232,168,72,0.24)" strokeWidth="0.8" />
+      <circle cx={svgNumber(strand.end.x)} cy={svgNumber(strand.end.y)} r="4.5" fill="rgba(239,184,87,0.82)" />
       <rect x={x} y={y} width={width} height={height} rx="8" fill="rgba(5,8,15,0.78)" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
-      <text x={anchor.x} y={anchor.y - 6} textAnchor="middle" className="coming-soon-title">
+      <text x={svgNumber(anchor.x)} y={svgNumber(anchor.y - 6)} textAnchor="middle" className="coming-soon-title">
         {getStrandLabel(strand.node)}
       </text>
-      <text x={anchor.x} y={anchor.y + 14} textAnchor="middle" className="coming-soon-kicker">
+      <text x={svgNumber(anchor.x)} y={svgNumber(anchor.y + 14)} textAnchor="middle" className="coming-soon-kicker">
         Coming soon
       </text>
     </motion.g>
@@ -1701,8 +1727,8 @@ function AtlasNodeButton({
       pointerEvents={interactive ? "auto" : "none"}
     >
       <motion.circle
-        cx={point.x}
-        cy={point.y}
+        cx={svgNumber(point.x)}
+        cy={svgNumber(point.y)}
         animate={{
           r: highlighted ? radius + 16 : radius + 12,
           fill: highlighted ? "rgba(232,168,72,0.16)" : "rgba(255,255,255,0.026)",
@@ -1711,8 +1737,8 @@ function AtlasNodeButton({
         transition={{ duration: 0.18 }}
       />
       <motion.circle
-        cx={point.x}
-        cy={point.y}
+        cx={svgNumber(point.x)}
+        cy={svgNumber(point.y)}
         animate={{
           r: highlighted ? radius + 1.5 : radius,
           stroke: highlighted ? "rgba(232,168,72,0.92)" : "rgba(214,225,234,0.18)",
@@ -1721,10 +1747,10 @@ function AtlasNodeButton({
         fill="rgba(5,8,15,0.94)"
         transition={{ duration: 0.18 }}
       />
-      <foreignObject x={point.x - labelWidth / 2} y={point.y - labelHeight / 2} width={labelWidth} height={labelHeight} pointerEvents="none">
+      <foreignObject x={svgNumber(point.x - labelWidth / 2)} y={svgNumber(point.y - labelHeight / 2)} width={labelWidth} height={labelHeight} pointerEvents="none">
         <div className="continuous-node-label">{node.label}</div>
       </foreignObject>
-      <circle cx={point.x} cy={point.y} r={Math.max(44, radius + 18)} fill="rgba(255,255,255,0.001)" />
+      <circle cx={svgNumber(point.x)} cy={svgNumber(point.y)} r={Math.max(44, radius + 18)} fill="rgba(255,255,255,0.001)" />
     </motion.g>
   );
 }

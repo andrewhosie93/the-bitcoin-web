@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "framer-motion": "^11.18.2",
-    "next": "^14.2.24",
+    "next": "^15.5.16",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -23,4 +23,3 @@
     "typescript": "^5.7.3"
   }
 }
-
