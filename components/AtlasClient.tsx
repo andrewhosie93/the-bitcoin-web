@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import type { AtlasData, AtlasNode, ExplanationMode } from "@/types/atlas";
 
 type AtlasClientProps = {
@@ -527,9 +527,77 @@ function getCanonicalBreadcrumbIds(node: AtlasNode, nodeMap: Map<string, AtlasNo
   return trail.length ? trail : [rootId];
 }
 
-function getBranchChildPoint(branch: BranchModel, childIndex: number, totalChildren: number, distance = 210) {
+function getBranchChildPoint(branch: BranchModel, childIndex: number, totalChildren: number, distance = 210): Point {
+  return getChildPointFromParent(branch.point, branch.angle, childIndex, totalChildren, distance);
+}
+
+function getChildPointFromParent(parentPoint: Point, baseAngle: number, childIndex: number, totalChildren: number, distance = 210): Point {
   const spread = totalChildren <= 1 ? 0 : -36 + (childIndex * 72) / (totalChildren - 1);
-  return polar(branch.point.x, branch.point.y, distance, branch.angle + spread);
+  return polar(parentPoint.x, parentPoint.y, distance, baseAngle + spread);
+}
+
+function getAngleBetween(from: Point, to: Point): number {
+  return (Math.atan2(to.y - from.y, to.x - from.x) * 180) / Math.PI;
+}
+
+function getPathToNode(pathIds: string[] | undefined, id: string): string[] | undefined {
+  if (!pathIds) {
+    return undefined;
+  }
+
+  const index = pathIds.lastIndexOf(id);
+  return index >= 0 ? pathIds.slice(0, index + 1) : undefined;
+}
+
+function getPathParentId(id: string, pathIds: string[] | undefined, nodeMap: Map<string, AtlasNode>): string | null {
+  const pathToNode = getPathToNode(pathIds, id);
+  if (!pathToNode || pathToNode.length < 2) {
+    return null;
+  }
+
+  const parentId = pathToNode[pathToNode.length - 2];
+  const parent = nodeMap.get(parentId);
+  const node = nodeMap.get(id);
+
+  if (!parent || !node) {
+    return null;
+  }
+
+  return parent.childIds.includes(id) || node.parentIds.includes(parentId) ? parentId : null;
+}
+
+function getNodeAxisAngle({
+  id,
+  point,
+  moneyEntryId,
+  branchModels,
+  nodeMap,
+  childDistance,
+  pathIds
+}: {
+  id: string;
+  point: Point;
+  moneyEntryId: string;
+  branchModels: BranchModel[];
+  nodeMap: Map<string, AtlasNode>;
+  childDistance: number;
+  pathIds?: string[];
+}): number {
+  const branch = branchModels.find((item) => item.id === id);
+  if (branch) {
+    return branch.angle;
+  }
+
+  const pathParentId = getPathParentId(id, pathIds, nodeMap);
+  if (pathParentId) {
+    const parentPath = getPathToNode(pathIds, pathParentId);
+    const parentPoint = getNodePoint({ id: pathParentId, moneyEntryId, branchModels, nodeMap, childDistance, pathIds: parentPath });
+    return getAngleBetween(parentPoint, point);
+  }
+
+  const node = nodeMap.get(id);
+  const parentBranch = node?.parentIds.map((parentId) => branchModels.find((item) => item.id === parentId)).find(Boolean);
+  return parentBranch?.angle ?? -90;
 }
 
 function getNodePoint({
@@ -537,14 +605,16 @@ function getNodePoint({
   moneyEntryId,
   branchModels,
   nodeMap,
-  childDistance = 210
+  childDistance = 210,
+  pathIds
 }: {
   id: string;
   moneyEntryId: string;
   branchModels: BranchModel[];
   nodeMap: Map<string, AtlasNode>;
   childDistance?: number;
-}) {
+  pathIds?: string[];
+}): Point {
   if (id === moneyEntryId) {
     return WORLD.moneyHub;
   }
@@ -552,6 +622,19 @@ function getNodePoint({
   const directBranch = branchModels.find((branch) => branch.id === id);
   if (directBranch) {
     return directBranch.point;
+  }
+
+  const pathParentId = getPathParentId(id, pathIds, nodeMap);
+  if (pathParentId) {
+    const parent = nodeMap.get(pathParentId);
+    const childIndex = parent?.childIds.indexOf(id) ?? -1;
+
+    if (parent && childIndex >= 0) {
+      const parentPath = getPathToNode(pathIds, pathParentId);
+      const parentPoint = getNodePoint({ id: pathParentId, moneyEntryId, branchModels, nodeMap, childDistance, pathIds: parentPath });
+      const parentAngle = getNodeAxisAngle({ id: pathParentId, point: parentPoint, moneyEntryId, branchModels, nodeMap, childDistance, pathIds: parentPath });
+      return getChildPointFromParent(parentPoint, parentAngle, childIndex, parent.childIds.length, childDistance);
+    }
   }
 
   for (const branch of branchModels) {
@@ -581,7 +664,8 @@ function getCamera({
   nodeMap,
   isCompact,
   viewport,
-  childNodes
+  childNodes,
+  pathIds
 }: {
   view: AtlasView;
   selectedId: string;
@@ -593,6 +677,7 @@ function getCamera({
   isCompact: boolean;
   viewport: ViewportSize;
   childNodes: ChildNodeModel[];
+  pathIds: string[];
 }): CameraState {
   if (view === "home") {
     const safeRect = getSafeRect(viewport, view, isCompact);
@@ -631,7 +716,7 @@ function getCamera({
   }
 
   if (view === "node") {
-    const selectedPoint = getNodePoint({ id: selectedId, moneyEntryId: atlas.config.moneyEntryId, branchModels, nodeMap, childDistance });
+    const selectedPoint = getNodePoint({ id: selectedId, moneyEntryId: atlas.config.moneyEntryId, branchModels, nodeMap, childDistance, pathIds });
     const selectedIsBranch = branchModels.some((branch) => branch.id === selectedId);
     const selectedRadius = selectedIsBranch ? NODE_RADIUS.branch : NODE_RADIUS.focus;
     const bounds = boundsFromCircles([
@@ -652,19 +737,37 @@ function easeCameraProgress(progress: number) {
   return progress < 0.5 ? 4 * progress * progress * progress : 1 - Math.pow(-2 * progress + 2, 3) / 2;
 }
 
-function useAnimatedCamera(target: CameraState, reduceMotion: boolean) {
-  const [camera, setCamera] = useState<CameraState>(target);
+function formatCameraTransform(camera: CameraState) {
+  return `translate(${formatSvgNumber(camera.x)} ${formatSvgNumber(camera.y)}) scale(${formatSvgNumber(camera.scale)})`;
+}
+
+function CameraLayer({ target, reduceMotion, children }: { target: CameraState; reduceMotion: boolean; children: ReactNode }) {
+  const layerRef = useRef<SVGGElement | null>(null);
   const cameraRef = useRef(target);
+  const initialTransformRef = useRef(formatCameraTransform(target));
 
   useEffect(() => {
+    const layerElement = layerRef.current;
+    if (!layerElement) {
+      return;
+    }
+
     if (reduceMotion) {
       cameraRef.current = target;
-      setCamera(target);
+      layerElement.setAttribute("transform", formatCameraTransform(target));
       return;
     }
 
     const from = cameraRef.current;
-    const duration = 820;
+    const distance = Math.hypot(target.x - from.x, target.y - from.y);
+    const scaleDistance = Math.abs(target.scale - from.scale);
+    if (distance < 0.5 && scaleDistance < 0.002) {
+      cameraRef.current = target;
+      layerElement.setAttribute("transform", formatCameraTransform(target));
+      return;
+    }
+
+    const duration = 680;
     const startedAt = performance.now();
     let frame = 0;
 
@@ -678,7 +781,7 @@ function useAnimatedCamera(target: CameraState, reduceMotion: boolean) {
       };
 
       cameraRef.current = next;
-      setCamera(next);
+      layerElement!.setAttribute("transform", formatCameraTransform(next));
 
       if (progress < 1) {
         frame = requestAnimationFrame(tick);
@@ -689,7 +792,11 @@ function useAnimatedCamera(target: CameraState, reduceMotion: boolean) {
     return () => cancelAnimationFrame(frame);
   }, [reduceMotion, target.scale, target.x, target.y]);
 
-  return camera;
+  return (
+    <g ref={layerRef} transform={initialTransformRef.current}>
+      {children}
+    </g>
+  );
 }
 
 export default function AtlasClient({ atlas }: AtlasClientProps) {
@@ -710,6 +817,7 @@ export default function AtlasClient({ atlas }: AtlasClientProps) {
   const moneyEntry = nodeMap.get(atlas.config.moneyEntryId);
   const selectedStrand = selectedStrandId ? nodeMap.get(selectedStrandId) : null;
   const childNodeDistance = isCompact ? 160 : 210;
+  const selectedPathIds = useMemo(() => getPathToNode(pathIds, selected.id) ?? pathIds, [pathIds, selected.id]);
 
   const strands = useMemo<StrandModel[]>(
     () =>
@@ -780,9 +888,8 @@ export default function AtlasClient({ atlas }: AtlasClientProps) {
       return [];
     }
 
-    const selectedPoint = getNodePoint({ id: selected.id, moneyEntryId: atlas.config.moneyEntryId, branchModels, nodeMap, childDistance: childNodeDistance });
-    const parentBranch = branchModels.find((branch) => branch.id === selected.id);
-    const baseAngle = parentBranch?.angle ?? -90;
+    const selectedPoint = getNodePoint({ id: selected.id, moneyEntryId: atlas.config.moneyEntryId, branchModels, nodeMap, childDistance: childNodeDistance, pathIds: selectedPathIds });
+    const baseAngle = getNodeAxisAngle({ id: selected.id, point: selectedPoint, moneyEntryId: atlas.config.moneyEntryId, branchModels, nodeMap, childDistance: childNodeDistance, pathIds: selectedPathIds });
 
     return selected.childIds
       .map((id, index) => {
@@ -800,10 +907,9 @@ export default function AtlasClient({ atlas }: AtlasClientProps) {
         };
       })
       .filter(isPresent);
-  }, [atlas.config.moneyEntryId, branchModels, childNodeDistance, nodeMap, selected, view]);
+  }, [atlas.config.moneyEntryId, branchModels, childNodeDistance, nodeMap, selected, selectedPathIds, view]);
 
-  const targetCamera = getCamera({ view, selectedId, selectedStrandId, atlas, strands, branchModels, nodeMap, isCompact, viewport: viewportSize, childNodes: visibleChildNodes });
-  const camera = useAnimatedCamera(targetCamera, Boolean(shouldReduceMotion));
+  const targetCamera = getCamera({ view, selectedId, selectedStrandId, atlas, strands, branchModels, nodeMap, isCompact, viewport: viewportSize, childNodes: visibleChildNodes, pathIds: selectedPathIds });
   const showMoneyRegion = selectedStrandId === atlas.config.moneyEntryId || breadcrumbs.some((node) => node.id === atlas.config.moneyEntryId);
   const depth = Math.max(0, breadcrumbs.length - 1);
   const detailNode = view === "node" ? selected : null;
@@ -813,10 +919,12 @@ export default function AtlasClient({ atlas }: AtlasClientProps) {
       ? {
           id: selected.id,
           node: selected,
-          point: getNodePoint({ id: selected.id, moneyEntryId: atlas.config.moneyEntryId, branchModels, nodeMap, childDistance: childNodeDistance }),
-          parentPoint: selected.parentIds[0]
-            ? getNodePoint({ id: selected.parentIds[0], moneyEntryId: atlas.config.moneyEntryId, branchModels, nodeMap, childDistance: childNodeDistance })
-            : null
+          point: getNodePoint({ id: selected.id, moneyEntryId: atlas.config.moneyEntryId, branchModels, nodeMap, childDistance: childNodeDistance, pathIds: selectedPathIds }),
+          parentPoint: (() => {
+            const parentId = getPathParentId(selected.id, selectedPathIds, nodeMap) ?? selected.parentIds[0];
+            const parentPath = parentId ? getPathToNode(selectedPathIds, parentId) : undefined;
+            return parentId ? getNodePoint({ id: parentId, moneyEntryId: atlas.config.moneyEntryId, branchModels, nodeMap, childDistance: childNodeDistance, pathIds: parentPath }) : null;
+          })()
         }
       : null;
   const pendingStrand = view === "strand" && selectedStrand && selectedStrand.id !== atlas.config.moneyEntryId ? selectedStrand : null;
@@ -949,16 +1057,18 @@ export default function AtlasClient({ atlas }: AtlasClientProps) {
         return;
       }
 
-      const canonicalPath = getCanonicalBreadcrumbIds(target, nodeMap, atlas.config.rootId);
-      const nextStrand = canonicalPath.find((pathId) => atlas.config.mainLegIds.includes(pathId)) ?? selectedStrandId ?? id;
       const existingIndex = pathIds.indexOf(id);
       const currentId = pathIds[pathIds.length - 1] ?? atlas.config.rootId;
+      const currentNode = nodeMap.get(currentId);
+      const isLocalChild = Boolean(currentNode?.childIds.includes(id) || target.parentIds.includes(currentId));
+      const canonicalPath = getCanonicalBreadcrumbIds(target, nodeMap, atlas.config.rootId);
       const nextPath =
         intent !== "related" && existingIndex >= 0
           ? pathIds.slice(0, existingIndex + 1)
-          : intent === "deeper" || target.parentIds.includes(currentId)
+          : isLocalChild
             ? [...pathIds, id]
             : canonicalPath;
+      const nextStrand = nextPath.find((pathId) => atlas.config.mainLegIds.includes(pathId)) ?? canonicalPath.find((pathId) => atlas.config.mainLegIds.includes(pathId)) ?? selectedStrandId ?? id;
 
       applyAtlasSnapshot(
         {
@@ -974,7 +1084,7 @@ export default function AtlasClient({ atlas }: AtlasClientProps) {
   );
 
   const moveTowardBitcoin = useCallback(() => {
-    const parentId = selected.parentIds[0];
+    const parentId = getPathParentId(selected.id, selectedPathIds, nodeMap) ?? selected.parentIds[0];
 
     if (!parentId) {
       resetToCenter();
@@ -982,7 +1092,7 @@ export default function AtlasClient({ atlas }: AtlasClientProps) {
     }
 
     selectNode(parentId, parentId === atlas.config.rootId ? "center" : "toward");
-  }, [atlas.config.rootId, resetToCenter, selectNode, selected.parentIds]);
+  }, [atlas.config.rootId, nodeMap, resetToCenter, selectNode, selected.id, selected.parentIds, selectedPathIds]);
 
   const moveBackOneView = useCallback(() => {
     if (view === "home") {
@@ -995,7 +1105,7 @@ export default function AtlasClient({ atlas }: AtlasClientProps) {
     }
 
     if (view === "node") {
-      const parentId = selected.parentIds[0];
+      const parentId = getPathParentId(selected.id, selectedPathIds, nodeMap) ?? selected.parentIds[0];
 
       if (parentId) {
         selectNode(parentId, parentId === atlas.config.rootId ? "center" : "toward", "replace");
@@ -1004,7 +1114,7 @@ export default function AtlasClient({ atlas }: AtlasClientProps) {
     }
 
     resetToCenter("replace");
-  }, [atlas.config.rootId, resetToCenter, selectNode, selected.parentIds, view]);
+  }, [atlas.config.rootId, nodeMap, resetToCenter, selectNode, selected.id, selected.parentIds, selectedPathIds, view]);
 
   useEffect(() => {
     function updateViewport() {
@@ -1093,7 +1203,7 @@ export default function AtlasClient({ atlas }: AtlasClientProps) {
 
           <rect width={WORLD.width} height={WORLD.height} fill="transparent" />
 
-          <g transform={`translate(${formatSvgNumber(camera.x)} ${formatSvgNumber(camera.y)}) scale(${formatSvgNumber(camera.scale)})`}>
+          <CameraLayer target={targetCamera} reduceMotion={Boolean(shouldReduceMotion)}>
             <BackgroundWeb strands={strands} view={view} />
 
             <g pointerEvents={view === "home" ? "auto" : "none"} aria-hidden={view === "home" ? undefined : true}>
@@ -1127,13 +1237,14 @@ export default function AtlasClient({ atlas }: AtlasClientProps) {
               visible={showMoneyRegion}
               view={view}
               activeId={selected.id}
+              pathIds={selectedPathIds}
               branchModels={branchModels}
               childNodes={visibleChildNodes}
               focusNode={focusNode}
               reduceMotion={Boolean(shouldReduceMotion)}
               onSelectNode={selectNode}
             />
-          </g>
+          </CameraLayer>
         </svg>
       </div>
 
@@ -1372,7 +1483,7 @@ function MainStrand({
                     scale: 1
                   }
           }
-          transition={{ duration: 4.6, delay: satellite.delay, repeat: reduceMotion ? 0 : Infinity, ease: "easeInOut" }}
+          transition={{ duration: 4.6, delay: satellite.delay, repeat: !reduceMotion && isHome ? Infinity : 0, ease: "easeInOut" }}
         />
       ))}
 
@@ -1385,7 +1496,7 @@ function MainStrand({
             fill={active ? "rgba(232,168,72,0.12)" : "rgba(232,168,72,0.025)"}
             stroke={active ? "rgba(232,168,72,0.28)" : "rgba(218,230,239,0.055)"}
             animate={reduceMotion ? { opacity: active ? 0.86 : 0.42 } : { opacity: active ? [0.62, 0.95, 0.62] : [0.2, 0.38, 0.2] }}
-            transition={{ duration: 4.8, repeat: reduceMotion ? 0 : Infinity, ease: "easeInOut" }}
+            transition={{ duration: 4.8, repeat: !reduceMotion && isHome ? Infinity : 0, ease: "easeInOut" }}
           />
           <circle cx={svgNumber(strand.end.x)} cy={svgNumber(strand.end.y)} r={endpointVisibleRadius} fill={active ? "rgba(239,184,87,0.88)" : "rgba(196,211,222,0.34)"} />
           <circle cx={svgNumber(strand.end.x)} cy={svgNumber(strand.end.y)} r={compact ? 34 : 30} fill="rgba(255,255,255,0.001)" />
@@ -1450,7 +1561,7 @@ function BitcoinOrb({
           r="185"
           fill="url(#orbHaze)"
           animate={reduceMotion ? { opacity: active ? 0.72 : 0.42 } : { opacity: active ? [0.45, 0.78, 0.45] : 0.42, scale: active ? [0.96, 1.04, 0.96] : 0.86 }}
-          transition={{ duration: 6.2, repeat: reduceMotion ? 0 : Infinity, ease: "easeInOut" }}
+          transition={{ duration: 6.2, repeat: !reduceMotion && active ? Infinity : 0, ease: "easeInOut" }}
           style={{ transformOrigin: formatTransformOrigin(WORLD.center) }}
         />
         <motion.circle
@@ -1461,7 +1572,7 @@ function BitcoinOrb({
           stroke="rgba(255,205,116,0.1)"
           strokeWidth="1"
           animate={reduceMotion ? { opacity: 0.18 } : { opacity: active ? [0.08, 0.28, 0.08] : 0.07, scale: active ? [0.92, 1.12, 0.92] : 0.86 }}
-          transition={{ duration: 7.4, repeat: reduceMotion ? 0 : Infinity, ease: "easeInOut" }}
+          transition={{ duration: 7.4, repeat: !reduceMotion && active ? Infinity : 0, ease: "easeInOut" }}
           style={{ transformOrigin: formatTransformOrigin(WORLD.center) }}
         />
         <motion.circle
@@ -1472,7 +1583,7 @@ function BitcoinOrb({
           stroke="rgba(255,226,164,0.12)"
           strokeWidth="0.8"
           animate={reduceMotion ? { opacity: 0.2 } : { opacity: active ? [0.1, 0.32, 0.1] : 0.08, scale: active ? [1.04, 0.92, 1.04] : 0.9 }}
-          transition={{ duration: 5.8, repeat: reduceMotion ? 0 : Infinity, ease: "easeInOut" }}
+          transition={{ duration: 5.8, repeat: !reduceMotion && active ? Infinity : 0, ease: "easeInOut" }}
           style={{ transformOrigin: formatTransformOrigin(WORLD.center) }}
         />
         <motion.circle
@@ -1483,7 +1594,7 @@ function BitcoinOrb({
           stroke="rgba(255,209,117,0.52)"
           strokeWidth="1.4"
           animate={reduceMotion ? { scale: 1 } : { scale: active ? [1, 1.035, 1] : 0.9 }}
-          transition={{ duration: 4.8, repeat: reduceMotion ? 0 : Infinity, ease: "easeInOut" }}
+          transition={{ duration: 4.8, repeat: !reduceMotion && active ? Infinity : 0, ease: "easeInOut" }}
           style={{ transformOrigin: formatTransformOrigin(WORLD.center) }}
         />
         <circle cx={WORLD.center.x} cy={WORLD.center.y} r="78" fill="url(#orbInnerFire)" opacity="0.88" />
@@ -1540,6 +1651,7 @@ function MoneyRegion({
   visible,
   view,
   activeId,
+  pathIds,
   branchModels,
   childNodes,
   focusNode,
@@ -1549,6 +1661,7 @@ function MoneyRegion({
   visible: boolean;
   view: AtlasView;
   activeId: string;
+  pathIds: string[];
   branchModels: BranchModel[];
   childNodes: Array<{ id: string; node: AtlasNode; parentPoint: Point; point: Point }>;
   focusNode: { id: string; node: AtlasNode; point: Point; parentPoint: Point | null } | null;
@@ -1579,7 +1692,7 @@ function MoneyRegion({
       />
 
       {branchModels.map((branch) => {
-        const branchActive = activeId === branch.id || branch.node.childIds.includes(activeId);
+        const branchActive = activeId === branch.id || pathIds.includes(branch.id);
         const branchQuiet = isNodeView && !branchActive;
         const opacity = branchQuiet ? quietOpacity : 1;
 
@@ -1632,7 +1745,7 @@ function MoneyRegion({
       />
 
       {branchModels.map((branch) => {
-        const branchActive = activeId === branch.id || branch.node.childIds.includes(activeId);
+        const branchActive = activeId === branch.id || pathIds.includes(branch.id);
         const branchQuiet = isNodeView && !branchActive;
         const opacity = branchQuiet ? quietOpacity : 1;
 
@@ -1755,6 +1868,41 @@ function AtlasNodeButton({
   );
 }
 
+function FormattedText({ text }: { text?: string }) {
+  if (!text) {
+    return null;
+  }
+
+  const blocks = text
+    .split(/\n\s*\n/)
+    .map((block) => block.trim())
+    .filter(Boolean);
+
+  return (
+    <>
+      {blocks.map((block, index) => {
+        const lines = block
+          .split("\n")
+          .map((line) => line.trim())
+          .filter(Boolean);
+        const isList = lines.length > 0 && lines.every((line) => line.startsWith("- ") || line.startsWith("\u2022 "));
+
+        if (isList) {
+          return (
+            <ul key={index} className="list-disc space-y-1 pl-5">
+              {lines.map((line, lineIndex) => (
+                <li key={`${index}-${lineIndex}`}>{line.replace(/^[-\u2022]\s*/, "")}</li>
+              ))}
+            </ul>
+          );
+        }
+
+        return <p key={index}>{block}</p>;
+      })}
+    </>
+  );
+}
+
 function DetailPanel({
   node,
   selectedStrand,
@@ -1776,9 +1924,31 @@ function DetailPanel({
   onReset: () => void;
   reduceMotion: boolean;
 }) {
+  const [previewNode, setPreviewNode] = useState<AtlasNode | null>(null);
   const parents = node.parentIds.map((id) => nodeMap.get(id)).filter(isAtlasNode);
   const children = node.childIds.map((id) => nodeMap.get(id)).filter(isAtlasNode);
   const related = node.relatedIds.map((id) => nodeMap.get(id)).filter(isAtlasNode);
+
+  useEffect(() => {
+    setPreviewNode(null);
+  }, [node.id]);
+
+  useEffect(() => {
+    if (!previewNode) {
+      return;
+    }
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        event.stopPropagation();
+        setPreviewNode(null);
+      }
+    }
+
+    window.addEventListener("keydown", onKeyDown, { capture: true });
+    return () => window.removeEventListener("keydown", onKeyDown, { capture: true });
+  }, [previewNode]);
 
   return (
     <motion.aside
@@ -1816,15 +1986,73 @@ function DetailPanel({
         ))}
       </div>
 
-      <p className="mt-4 rounded-lg border border-white/10 bg-white/[0.035] p-3 text-sm leading-6 text-[#d9d1c2]">{node[mode]}</p>
+      <div className="mt-4 space-y-3 rounded-lg border border-white/10 bg-white/[0.035] p-3 text-sm leading-6 text-[#d9d1c2]">
+        <FormattedText text={node[mode]} />
+      </div>
 
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
         <NavigationCluster title="Toward Bitcoin" nodes={parents} actionLabel="Move up" emptyLabel="Centre reached." onSelect={(id) => onSelectNode(id, "toward")} fallbackAction={onMoveTowardBitcoin} />
         <NavigationCluster title="Go deeper" nodes={children} actionLabel="Go deeper" emptyLabel="No deeper nodes here yet." onSelect={(id) => onSelectNode(id, "deeper")} />
       </div>
 
-      <NavigationCluster title="Cross-strand links" nodes={related} actionLabel="Cross over" emptyLabel="No cross-strand links listed." onSelect={(id) => onSelectNode(id, "related")} related />
+      <NavigationCluster
+        title="Also touches"
+        nodes={related}
+        actionLabel="Preview"
+        emptyLabel="No related notes listed."
+        onSelect={(id) => {
+          const target = nodeMap.get(id);
+          if (target) {
+            setPreviewNode(target);
+          }
+        }}
+        related
+      />
+
+      <AnimatePresence>
+        {previewNode ? (
+          <RelatedConnectionPreview
+            key={previewNode.id}
+            node={previewNode}
+            reduceMotion={reduceMotion}
+            onClose={() => setPreviewNode(null)}
+          />
+        ) : null}
+      </AnimatePresence>
     </motion.aside>
+  );
+}
+
+function RelatedConnectionPreview({
+  node,
+  reduceMotion,
+  onClose
+}: {
+  node: AtlasNode;
+  reduceMotion: boolean;
+  onClose: () => void;
+}) {
+  return (
+    <motion.section
+      className="mt-3 rounded-lg border border-verdigris/25 bg-verdigris/[0.075] p-3"
+      initial={{ opacity: 0, y: reduceMotion ? 0 : 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: reduceMotion ? 0 : 8 }}
+      transition={{ duration: reduceMotion ? 0.12 : 0.22 }}
+    >
+      <p className="text-xs uppercase tracking-[0.2em] text-verdigris">Related connection</p>
+      <h3 className="mt-2 text-sm font-medium text-vellum">{node.title}</h3>
+      <p className="mt-2 text-xs leading-5 text-[#cfc7b8]">{node.summary}</p>
+      <div className="mt-3 flex flex-wrap gap-2">
+        <button
+          type="button"
+          onClick={onClose}
+          className="rounded-md border border-white/10 bg-black/10 px-2.5 py-1.5 text-xs text-pewter transition hover:border-white/25 hover:text-vellum"
+        >
+          Stay here
+        </button>
+      </div>
+    </motion.section>
   );
 }
 
