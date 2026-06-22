@@ -8,6 +8,7 @@
     "curious": "Bitcoin is not one invention in isolation. It is a convergence point where hard money, proof of work, peer-to-peer networking, public-key cryptography, distributed consensus, and a political argument about money all meet.",
     "studious": "Studious mode placeholder: this node will collect primary sources, protocol references, and historiographic notes on Bitcoin as a synthesis rather than a single-origin invention.",
     "bitcoinConnection": "This is the point users travel back toward or away from.",
+    "sourceIds": ["bitcoin-whitepaper", "bitcoin-core-repo"],
     "parentIds": [],
     "childIds": [
       "bitcoin-as-money",
@@ -39,6 +40,7 @@
     "curious": "Bitcoin as money is a historical question as much as a technical one. Monetary systems have solved coordination problems through many mixtures of objects, credit, ledgers, banks, law, state units, and social trust. Bitcoin rearranges those pieces by fixing issuance in protocol rules, recording ownership in a public ledger, allowing direct control through private keys, and letting users verify the rules for themselves. That matters because it changes who must be trusted at the base layer.\n\nIt does not remove every dependency. Users still face price volatility, custody mistakes, exchange failures, tax treatment, legal limits, liquidity gaps, and the ordinary problem that a money is only useful when other people will accept it.\n\nBitcoin connects back to older money by revisiting old questions about scarcity, settlement, trust, and political authority with new tools. The analogy becomes misleading when Bitcoin is treated as simply digital gold, a bank replacement, or a finished national currency. It is better understood as an open monetary network testing whether some monetary promises can be made verifiable rather than discretionary. That makes it an argument about institutional design, not a promise that users can ignore institutions altogether.",
     "studious": "Sources to add: monetary theory, monetary anthropology, banking history, settlement history, Bitcoin whitepaper, critiques of Bitcoin as money.",
     "bitcoinConnection": "Bitcoin's money claim rests on whether fixed issuance, public validation, self-custody, and open settlement can coordinate users without a central monetary issuer.",
+    "sourceIds": ["bitcoin-whitepaper", "bitcoin-core-repo", "jevons-money-mechanism", "menger-origin-money", "graeber-debt"],
     "parentIds": ["bitcoin"],
     "childIds": [
       "scarcity",
@@ -69,14 +71,14 @@
     "curious": "Scarcity is not just fewness. For money, the important question is whether new units can be produced or authorized in ways that surprise holders and weaken existing claims. Gold's scarcity is physical and practical: expansion depends on discovery, extraction, refining, and verification. Other monies have been scarce because custom, authority, or social rules limited production and circulation.\n\nBitcoin tries to make monetary scarcity a public rule rather than a natural property. New issuance follows a schedule, the total supply cap is part of the consensus rules, and full nodes can reject blocks that violate those rules. The problem being solved is monetary dilution by easy creation. The remaining limitation is demand. Scarcity says little about whether people will value the asset, whether markets will be liquid, whether custody will be safe, or whether use will be convenient.\n\nBitcoin's scarcity is also social and technical: it depends on users continuing to coordinate around compatible software and treating copied rule sets as different networks. The gold comparison is helpful when it highlights resistance to supply expansion, but misleading when it ignores that Bitcoin's scarcity is enforced by validation and network consensus rather than geology.",
     "studious": "Sources to add: monetary history, commodity money literature, scarcity and artificial scarcity debates, Bitcoin issuance documentation, critiques of stock-to-flow claims.",
     "bitcoinConnection": "Bitcoin turns monetary scarcity into a consensus rule that users can verify, while still depending on durable demand for that rule to matter.",
+    "sourceIds": ["bitcoin-whitepaper", "bitcoin-core-repo", "jevons-money-mechanism", "menger-origin-money"],
     "parentIds": ["bitcoin-as-money"],
     "childIds": [
       "gold"
     ],
     "relatedIds": [
       "energy",
-      "fiat-money",
-      "proof-of-work-placeholder"
+      "fiat-money"
     ],
     "legTags": ["money", "energy"],
     "status": {
@@ -94,6 +96,7 @@
     "curious": "Gold's monetary role came from a combination of material qualities and social arrangements. It is durable, divisible with skill, relatively easy to recognize compared with many metals, and difficult to increase quickly. Those properties helped solve the problem of anchoring value in something harder to create than ordinary goods or private promises.\n\nYet gold did not become money through chemistry alone. Coinage, mint marks, weights, assaying, vaulting, trade networks, banking practices, legal standards, and state policies shaped how people actually used it. The limitation was that physical scarcity created new dependencies. Gold could be clipped, debased, stolen, centralized in vaults, represented by claims, or made difficult to move across distance.\n\nBitcoin draws on gold as a reference for scarcity and costly production, but changes the verification problem. A Bitcoin user can check ledger rules with software rather than trusting an assay office, a mint, or a vault certificate. The comparison is useful when it shows why hard-to-expand supply can matter. It becomes misleading when it forgets that gold has physical uses, jewelry demand, deep institutional history, and settlement constraints, while Bitcoin is a digital network asset secured by validation, mining incentives, and social agreement about rules.",
     "studious": "Sources to add: monetary history, gold standard history, coinage and assay references, banking history, comparative notes on gold and Bitcoin.",
     "bitcoinConnection": "Bitcoin uses gold as a historical reference for scarce, costly-to-produce money, while moving custody, verification, and settlement into a digital network.",
+    "sourceIds": ["bitcoin-whitepaper", "jevons-money-mechanism", "menger-origin-money"],
     "parentIds": ["scarcity"],
     "childIds": [
       "commodity-money"
@@ -119,6 +122,7 @@
     "curious": "Commodity money is best understood as one family of monetary solutions, not the universal origin story of money. In many societies, credit, tribute, taxation, ritual exchange, and accounting existed alongside objects used for payment or settlement. The problem commodity money helped solve was that personal promises and local memory often travel poorly. A recognized good could move value across distance, between strangers, or across political boundaries when direct trust was limited.\n\nBut the commodity itself was never the whole system. People needed standards for weight and quality, storage practices, transport routes, legal treatment, and confidence that others would accept the object later.\n\nAuthorities often shaped these systems through coinage, taxes, contract enforcement, and mint standards. Bitcoin resembles commodity money because it has no discretionary issuer and because control can move between parties without an account keeper. The limitation is that Bitcoin's scarcity is not material. It has no direct use as food, tool, ornament, or industrial input, and its value depends on network demand and verification. Calling it commodity money can illuminate the no-issuer design, but it can hide that Bitcoin is also a ledger, a protocol, and a social consensus.",
     "studious": "Sources to add: monetary anthropology, commodity money examples, critiques of barter-origin narratives, numismatics, Bitcoin commodity-money comparisons.",
     "bitcoinConnection": "Bitcoin borrows the commodity-money idea of issuer-independent scarcity, but replaces material usefulness with network verification and social acceptance.",
+    "sourceIds": ["jevons-money-mechanism", "menger-origin-money", "humphrey-barter-disintegration", "graeber-debt"],
     "parentIds": ["gold"],
     "childIds": [
       "costly-production"
@@ -144,6 +148,7 @@
     "curious": "Costly production turns expense into a barrier against easy creation, but the meaning of that expense changes by system. With gold, the cost is tied to geology, labor, energy, equipment, transport, and refining. With coins, cost also includes mint standards, legal enforcement, and trust that the stated content matches the object. With Bitcoin, the relevant cost is proof of work: miners spend computation and electricity to propose blocks, while nodes cheaply verify that those blocks follow the rules.\n\nThe problem being solved is not only issuance. It is also transaction ordering in a public ledger where participants do not need to trust one central record keeper.\n\nThe remaining limitation is important. Cost is not a moral proof, a price floor, or a guarantee of social value. Energy use can be criticized, mining can centralize around cheap power and specialized hardware, and weak demand can overwhelm any production cost.\n\nBitcoin connects to commodity money by making new issuance costly, but the analogy can mislead. Miners are not digging up pre-existing digital coins. They are competing for the right to append valid blocks and receive rewards under rules that validating users enforce.",
     "studious": "Sources to add: gold mining history, minting history, proof-of-work literature, Bitcoin mining documentation, security budget and energy-use debates.",
     "bitcoinConnection": "Bitcoin uses costly computation to discipline issuance and make ledger rewriting expensive, while leaving the value of that cost open to economic and ethical debate.",
+    "sourceIds": ["bitcoin-whitepaper", "bitcoin-core-repo", "jevons-money-mechanism"],
     "parentIds": ["commodity-money"],
     "childIds": [],
     "relatedIds": [

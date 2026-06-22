@@ -3,7 +3,7 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import type { AtlasData, AtlasNode, ExplanationMode } from "@/types/atlas";
+import type { AtlasData, AtlasNode, AtlasSource, ExplanationMode } from "@/types/atlas";
 
 type AtlasClientProps = {
   atlas: AtlasData;
@@ -504,6 +504,10 @@ function isAtlasNode(node: AtlasNode | undefined): node is AtlasNode {
   return Boolean(node);
 }
 
+function isAtlasSource(source: AtlasSource | undefined): source is AtlasSource {
+  return Boolean(source);
+}
+
 function isPresent<T>(value: T | null | undefined): value is T {
   return value != null;
 }
@@ -802,6 +806,7 @@ function CameraLayer({ target, reduceMotion, children }: { target: CameraState; 
 export default function AtlasClient({ atlas }: AtlasClientProps) {
   const shouldReduceMotion = useReducedMotion();
   const nodeMap = useMemo(() => makeNodeMap(atlas.nodes), [atlas.nodes]);
+  const sourceMap = useMemo(() => new Map(atlas.sources.map((source) => [source.id, source])), [atlas.sources]);
   const root = nodeMap.get(atlas.config.rootId)!;
   const [view, setView] = useState<AtlasView>("home");
   const [selectedId, setSelectedId] = useState(atlas.config.rootId);
@@ -911,7 +916,7 @@ export default function AtlasClient({ atlas }: AtlasClientProps) {
 
   const targetCamera = getCamera({ view, selectedId, selectedStrandId, atlas, strands, branchModels, nodeMap, isCompact, viewport: viewportSize, childNodes: visibleChildNodes, pathIds: selectedPathIds });
   const showMoneyRegion = selectedStrandId === atlas.config.moneyEntryId || breadcrumbs.some((node) => node.id === atlas.config.moneyEntryId);
-  const depth = Math.max(0, breadcrumbs.length - 1);
+  const pathDepth = Math.max(0, selectedPathIds.length - 1);
   const detailNode = view === "node" ? selected : null;
   const selectedIsMoneyBranch = branchModels.some((branch) => branch.id === selected.id);
   const focusNode =
@@ -1280,7 +1285,7 @@ export default function AtlasClient({ atlas }: AtlasClientProps) {
                   {index < breadcrumbs.length - 1 ? <span className="text-white/25">&rarr;</span> : null}
                 </span>
               ))}
-              <span className="rounded-full border border-white/[0.08] bg-black/20 px-2.5 py-1 uppercase tracking-[0.16em] backdrop-blur">Depth {depth}</span>
+              <span className="rounded-full border border-white/[0.08] bg-black/20 px-2.5 py-1 uppercase tracking-[0.16em] backdrop-blur">Path depth {pathDepth}</span>
             </div>
           </motion.div>
         ) : null}
@@ -1324,6 +1329,7 @@ export default function AtlasClient({ atlas }: AtlasClientProps) {
             mode={mode}
             onModeChange={setMode}
             nodeMap={nodeMap}
+            sourceMap={sourceMap}
             onSelectNode={selectNode}
             onMoveTowardBitcoin={moveTowardBitcoin}
             onReset={resetToCenter}
@@ -1903,12 +1909,46 @@ function FormattedText({ text }: { text?: string }) {
   );
 }
 
+function SourceList({ sources }: { sources: AtlasSource[] }) {
+  if (!sources.length) {
+    return <p>Sources are being assembled for this draft.</p>;
+  }
+
+  return (
+    <div className="border-t border-white/10 pt-3">
+      <h3 className="text-xs uppercase tracking-[0.2em] text-gold/70">Linked sources</h3>
+      <div className="mt-3 grid gap-3">
+        {sources.map((source) => {
+          const meta = [source.author, source.year, source.publisher].filter(isPresent).join(" - ");
+
+          return (
+            <article key={source.id} className="rounded-md border border-white/10 bg-black/10 p-3">
+              <div className="flex flex-wrap items-start justify-between gap-2">
+                <h4 className="text-sm font-medium leading-5 text-vellum">{source.title}</h4>
+                <span className="rounded-full border border-gold/25 px-2 py-0.5 text-[10px] uppercase tracking-[0.14em] text-gold/75">{source.type}</span>
+              </div>
+              {meta ? <p className="mt-1 text-xs leading-5 text-pewter">{meta}</p> : null}
+              {source.note ? <p className="mt-2 text-xs leading-5 text-[#cfc7b8]">{source.note}</p> : null}
+              {source.url ? (
+                <a className="mt-2 inline-flex text-xs text-gold/80 transition hover:text-gold" href={source.url} target="_blank" rel="noreferrer">
+                  Open source
+                </a>
+              ) : null}
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 function DetailPanel({
   node,
   selectedStrand,
   mode,
   onModeChange,
   nodeMap,
+  sourceMap,
   onSelectNode,
   onMoveTowardBitcoin,
   onReset,
@@ -1919,6 +1959,7 @@ function DetailPanel({
   mode: ExplanationMode;
   onModeChange: (mode: ExplanationMode) => void;
   nodeMap: Map<string, AtlasNode>;
+  sourceMap: Map<string, AtlasSource>;
   onSelectNode: (id: string, intent?: SelectIntent) => void;
   onMoveTowardBitcoin: () => void;
   onReset: () => void;
@@ -1928,6 +1969,7 @@ function DetailPanel({
   const parents = node.parentIds.map((id) => nodeMap.get(id)).filter(isAtlasNode);
   const children = node.childIds.map((id) => nodeMap.get(id)).filter(isAtlasNode);
   const related = node.relatedIds.map((id) => nodeMap.get(id)).filter(isAtlasNode);
+  const sources = (node.sourceIds ?? []).map((id) => sourceMap.get(id)).filter(isAtlasSource);
 
   useEffect(() => {
     setPreviewNode(null);
@@ -1987,7 +2029,7 @@ function DetailPanel({
       </div>
 
       <div className="mt-4 space-y-3 rounded-lg border border-white/10 bg-white/[0.035] p-3 text-sm leading-6 text-[#d9d1c2]">
-        <FormattedText text={node[mode]} />
+        {mode === "studious" ? <SourceList sources={sources} /> : <FormattedText text={node[mode]} />}
       </div>
 
       <div className="mt-4 grid gap-3 sm:grid-cols-2">

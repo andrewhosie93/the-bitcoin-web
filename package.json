@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "check": "tsc --noEmit"
+    "check": "tsc --noEmit",
+    "validate:atlas": "node scripts/validate-atlas.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.18.2",

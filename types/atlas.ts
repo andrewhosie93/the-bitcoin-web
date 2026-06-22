@@ -6,6 +6,19 @@ export type NodeStatus = {
   source: string;
 };
 
+export type AtlasSourceType = "primary" | "book" | "paper" | "institutional" | "article" | "lecture";
+
+export type AtlasSource = {
+  id: string;
+  title: string;
+  author?: string;
+  year?: string | number;
+  publisher?: string;
+  type: AtlasSourceType;
+  url?: string;
+  note?: string;
+};
+
 export type AtlasNode = {
   id: string;
   title: string;
@@ -15,6 +28,7 @@ export type AtlasNode = {
   curious: string;
   studious: string;
   bitcoinConnection: string;
+  sourceIds?: string[];
   parentIds: string[];
   childIds: string[];
   relatedIds: string[];
@@ -32,4 +46,5 @@ export type AtlasConfig = {
 export type AtlasData = {
   config: AtlasConfig;
   nodes: AtlasNode[];
+  sources: AtlasSource[];
 };

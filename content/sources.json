@@ -1,0 +1,60 @@
+[
+  {
+    "id": "bitcoin-whitepaper",
+    "title": "Bitcoin: A Peer-to-Peer Electronic Cash System",
+    "author": "Satoshi Nakamoto",
+    "year": 2008,
+    "publisher": "bitcoin.org",
+    "type": "primary",
+    "url": "https://bitcoin.org/bitcoin.pdf",
+    "note": "Primary design paper for Bitcoin's peer-to-peer cash model, proof of work, incentives, and issuance analogy to gold mining."
+  },
+  {
+    "id": "bitcoin-core-repo",
+    "title": "Bitcoin Core source code",
+    "author": "Bitcoin Core contributors",
+    "publisher": "Bitcoin Core / GitHub",
+    "type": "primary",
+    "url": "https://github.com/bitcoin/bitcoin",
+    "note": "Primary implementation reference for Bitcoin consensus behavior; pin to a release or commit before using for final line-level citations."
+  },
+  {
+    "id": "jevons-money-mechanism",
+    "title": "Money and the Mechanism of Exchange",
+    "author": "William Stanley Jevons",
+    "year": 1875,
+    "publisher": "D. Appleton and Co.",
+    "type": "book",
+    "url": "https://oll.libertyfund.org/titles/jevons-money-and-the-mechanism-of-exchange",
+    "note": "Classic treatment of monetary functions, exchange frictions, metallic money, and historical monetary standards."
+  },
+  {
+    "id": "menger-origin-money",
+    "title": "On the Origin of Money",
+    "author": "Carl Menger",
+    "year": 1892,
+    "publisher": "The Economic Journal",
+    "type": "article",
+    "url": "https://www.jstor.org/stable/2956146",
+    "note": "Historical monetary theory source on money as an emergent institution and the saleability of commodities."
+  },
+  {
+    "id": "humphrey-barter-disintegration",
+    "title": "Barter and Economic Disintegration",
+    "author": "Caroline Humphrey",
+    "year": 1985,
+    "publisher": "Man, New Series, Vol. 20, No. 1",
+    "type": "paper",
+    "url": "https://www.jstor.org/stable/2802221",
+    "note": "Anthropological critique useful for avoiding a simple barter-origin story of money."
+  },
+  {
+    "id": "graeber-debt",
+    "title": "Debt: The First 5,000 Years",
+    "author": "David Graeber",
+    "year": 2011,
+    "publisher": "Melville House",
+    "type": "book",
+    "note": "Anthropological and historical critique of simple barter-first narratives; use carefully alongside monetary economics sources."
+  }
+]
