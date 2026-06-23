@@ -33,7 +33,7 @@ export default function AboutPage() {
           <section>
             <h2 className="font-serif text-2xl text-vellum">How Reverse Navigation Works</h2>
             <p className="mt-3 text-sm leading-7 text-[#c8c0b2]">
-              Start at Bitcoin and move backward through the ideas, technologies, institutions, and discoveries that made it possible. Each page keeps the current path visible, then offers nearby ways to move toward Bitcoin, go deeper, or cross into a related strand.
+              Start at Bitcoin and move backwards through the ideas, technologies, institutions, and discoveries that made it possible. The atlas keeps your current path visible, then offers nearby ways to move towards Bitcoin, go deeper, or inspect related concepts.
             </p>
           </section>
 

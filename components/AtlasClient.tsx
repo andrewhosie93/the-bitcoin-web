@@ -2033,7 +2033,7 @@ function DetailPanel({
       </div>
 
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
-        <NavigationCluster title="Toward Bitcoin" nodes={parents} actionLabel="Move up" emptyLabel="Centre reached." onSelect={(id) => onSelectNode(id, "toward")} fallbackAction={onMoveTowardBitcoin} />
+        <NavigationCluster title="Towards Bitcoin" nodes={parents} actionLabel="Move up" emptyLabel="Centre reached." onSelect={(id) => onSelectNode(id, "toward")} fallbackAction={onMoveTowardBitcoin} />
         <NavigationCluster title="Go deeper" nodes={children} actionLabel="Go deeper" emptyLabel="No deeper nodes here yet." onSelect={(id) => onSelectNode(id, "deeper")} />
       </div>
 
