@@ -16,6 +16,9 @@ What happens if it is omitted?
 
 ## Graph Position
 
+Historical era:
+Temporal kind:
+Chronology note:
 Proposed coverage depth:
 Proposed parent or parents:
 
@@ -67,6 +70,7 @@ Deeper outline:
 
 Main claims:
 Contested points:
+Chronology risks:
 Potential political or ideological framing:
 Limits of the Bitcoin comparison:
 

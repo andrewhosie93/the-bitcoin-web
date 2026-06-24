@@ -310,3 +310,73 @@ A bubble is complete only when:
 - atlas validation passes
 - manual editorial review is complete
 - no major unresolved sourcing concern remains
+
+## P. Temporal Doctrine
+
+The atlas is a reverse historical atlas, not a conventional timeline.
+
+### 1. Time Is A Backbone, Not The Whole Graph
+
+Time should:
+- orient historical movement
+- help distinguish predecessors from mechanisms
+- encourage every strand to contain genuine historical depth
+- reduce arbitrary depth-four filler
+
+Time should not:
+- force every conceptual relationship into chronology
+- imply one universal linear progression
+- assign false precision to disputed origins
+- determine every node's parent
+- replace causal or explanatory logic
+
+Core rule:
+
+"Time provides the backbone. Causality and explanation provide the branches."
+
+### 2. Distinguish Three Measures
+
+#### Path Depth
+
+Path depth is the number of edges travelled from Bitcoin through the current route.
+
+It is used in the interface. A shared canonical node may have different Path depths.
+
+#### Coverage Depth
+
+Coverage depth is the shortest approved route from Bitcoin to a canonical node.
+
+It is used for editorial planning. Do not treat it as the node's only valid position.
+
+#### Historical Era
+
+Historical era is the period in which a node emerged, operated or became important.
+
+It is used to orient the retrospective history. Historical era must not be treated as another intrinsic graph depth.
+
+### 3. Temporal Kinds
+
+Use temporal kind as planning and review metadata unless the graph schema later explicitly supports it.
+
+```ts
+type TemporalKind =
+  | "event"
+  | "period"
+  | "persistent"
+  | "recurring"
+  | "atemporal"
+```
+
+- event: a bounded occurrence or hinge, such as a founding moment, publication, crisis or legal break.
+- period: a span in which a practice, system or institution operated or became important.
+- persistent: a concept, institution, practice or technology that continues across several eras.
+- recurring: a pattern that appears repeatedly in different historical settings.
+- atemporal: an abstract mechanism, theorem or conceptual distinction whose explanatory role is not tied to one origin date.
+
+### 4. Temporal Edge Discipline
+
+Predecessor edges normally carry the strongest chronological claim.
+
+Foundation, Mechanism, Implementation, Institution and Example edges may be historical, contemporary or atemporal depending on the explanation. Do not relabel every older thing as a parent merely because it came first.
+
+Where chronology is disputed, approximate or uneven across regions, say so in planning notes and source requirements rather than inventing precision.
