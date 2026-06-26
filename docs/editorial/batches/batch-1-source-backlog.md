@@ -52,9 +52,9 @@ The goal is to turn source categories into reviewable source inventories before 
 - Should frame Bitcoin as a monetary candidate or monetary object rather than declaring universal money status.
 - Should use source review to separate descriptive monetary functions from advocacy claims.
 
-## Source-Record Decisions In This Pass
+## Source-Record Decisions Before Inventory
 
-- No new source records were added to `content/sources.json`.
-- No sourceIds were added to `content/nodes.json`.
-- Existing sourceIds for Bitcoin as Money and Scarcity remain useful candidates, but they still require human inspection before either node can advance beyond `source-needed`.
-- Settlement, Custody, Ledgers, Trust, Blockchain, Central Banks and Legal Tender remain without sourceIds in live node data and should not be advanced until real source records are selected and reviewed.
+- This backlog originally identified missing source categories and did not add records.
+- The follow-up inventory in `docs/editorial/batches/batch-1-source-inventory.md` adds candidate source records and sourceIds for human review.
+- Those additions do not change any node's `source-needed` status and do not approve Batch 1.
+- The batch remains blocked until the candidate sources receive claim-level human review.

@@ -5504,17 +5504,17 @@
       ],
       "rationale": "Cleans up existing public Money nodes before adding new structure.",
       "gateStatus": "blocked-pending-human-review",
-      "gateRationale": "Blocked until edge rationale revisions, source scope, source records and shared-context questions receive human editorial review.",
+      "gateRationale": "Blocked until source inventories, claim mapping, edge rationale revisions and shared-context questions receive human editorial review.",
       "blockers": [
         {
-          "type": "source-gaps",
-          "item": "Settlement; Custody; Ledgers; Trust; Blockchain; Central Banks; Legal Tender",
-          "detail": "Live nodes have no sourceIds and need source records before editorial approval."
+          "type": "source-inventory-review",
+          "item": "Batch 1",
+          "detail": "Batch 1 now has candidate source records attached, but they require human inspection before any node can advance beyond source-needed."
         },
         {
-          "type": "source-review",
-          "item": "Bitcoin as Money; Scarcity",
-          "detail": "Existing sourceIds are present, but the sources still need human inspection and claim mapping."
+          "type": "claim-mapping",
+          "item": "Bitcoin as Money; Scarcity; Settlement; Custody; Ledgers; Trust; Blockchain; Central Banks; Legal Tender",
+          "detail": "SourceIds are bibliography candidates only; each node still needs claim-level mapping before editorial approval."
         },
         {
           "type": "trust-edge-review",
@@ -5532,9 +5532,9 @@
           "detail": "Realised and planned shared contexts need review before any context is treated as implementation-ready."
         },
         {
-          "type": "source-backlog",
+          "type": "source-scope-review",
           "item": "Batch 1",
-          "detail": "Source categories must be converted into real source records and attached cautiously without changing source-needed status."
+          "detail": "The inventory may still need legal scholarship, peer-reviewed history and competing interpretations before final source review."
         }
       ]
     },

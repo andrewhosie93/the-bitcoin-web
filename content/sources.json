@@ -56,5 +56,136 @@
     "publisher": "Melville House",
     "type": "book",
     "note": "Anthropological and historical critique of simple barter-first narratives; use carefully alongside monetary economics sources."
+  },
+  {
+    "id": "bitcoin-devguide-block-chain",
+    "title": "Bitcoin Developer Guide: Block Chain",
+    "author": "Bitcoin Project contributors",
+    "publisher": "developer.bitcoin.org",
+    "type": "technical",
+    "url": "https://developer.bitcoin.org/devguide/block_chain.html",
+    "note": "Technical guide to Bitcoin's block chain structure, proof of work, confirmations, forks, UTXOs, and validation."
+  },
+  {
+    "id": "bitcoin-devguide-wallets",
+    "title": "Bitcoin Developer Guide: Wallets",
+    "author": "Bitcoin Project contributors",
+    "publisher": "developer.bitcoin.org",
+    "type": "technical",
+    "url": "https://developer.bitcoin.org/devguide/wallets.html",
+    "note": "Technical guide to Bitcoin wallets, private keys, addresses, backups, and spending control."
+  },
+  {
+    "id": "bitcoin-secure-your-wallet",
+    "title": "Securing your wallet",
+    "author": "Bitcoin Project contributors",
+    "publisher": "bitcoin.org",
+    "type": "guidance",
+    "url": "https://bitcoin.org/en/secure-your-wallet",
+    "note": "User-facing Bitcoin wallet security guidance; useful for custody risk but not sufficient for legal custody claims."
+  },
+  {
+    "id": "cpmi-payment-systems-glossary",
+    "title": "A glossary of terms used in payments and settlement systems",
+    "author": "Committee on Payment and Settlement Systems",
+    "year": 2003,
+    "publisher": "Bank for International Settlements",
+    "type": "institutional",
+    "url": "https://www.bis.org/cpmi/publ/d00b.htm",
+    "note": "Institutional terminology source for payment, clearing, settlement, finality, netting, and related systems concepts."
+  },
+  {
+    "id": "cpmi-iosco-pfmi",
+    "title": "Principles for financial market infrastructures",
+    "author": "Committee on Payment and Settlement Systems and Technical Committee of IOSCO",
+    "year": 2012,
+    "publisher": "Bank for International Settlements and IOSCO",
+    "type": "institutional",
+    "url": "https://www.bis.org/cpmi/publ/d101a.pdf",
+    "note": "Institutional source on payment systems, securities settlement, central counterparties, settlement finality, custody risk, and central-bank oversight."
+  },
+  {
+    "id": "occ-il1170-crypto-custody",
+    "title": "Interpretive Letter 1170: Authority of a National Bank to Provide Cryptocurrency Custody Services for Customers",
+    "author": "Office of the Comptroller of the Currency",
+    "year": 2020,
+    "publisher": "Office of the Comptroller of the Currency",
+    "type": "institutional",
+    "url": "https://www.occ.gov/topics/charters-and-licensing/interpretations-and-actions/2020/int1170.pdf",
+    "note": "U.S. banking-law source on cryptocurrency custody by national banks; use with jurisdictional caution."
+  },
+  {
+    "id": "princeton-bitcoin-technologies",
+    "title": "Bitcoin and Cryptocurrency Technologies",
+    "author": "Arvind Narayanan, Joseph Bonneau, Edward Felten, Andrew Miller, Steven Goldfeder",
+    "year": 2016,
+    "publisher": "Princeton University Press",
+    "type": "book",
+    "url": "https://bitcoinbook.cs.princeton.edu/",
+    "note": "Technical and academic synthesis on Bitcoin mechanics, consensus, incentives, privacy, wallets, and security assumptions."
+  },
+  {
+    "id": "mastering-bitcoin-third-edition",
+    "title": "Mastering Bitcoin: Programming the Open Blockchain, Third Edition",
+    "author": "Andreas M. Antonopoulos and David A. Harding",
+    "year": 2023,
+    "publisher": "O'Reilly Media",
+    "type": "book",
+    "url": "https://github.com/bitcoinbook/bitcoinbook",
+    "note": "Open technical book on Bitcoin transactions, keys, wallets, scripts, blocks, mining, and network operation."
+  },
+  {
+    "id": "schmandt-besserat-writing-came-about",
+    "title": "How Writing Came About",
+    "author": "Denise Schmandt-Besserat",
+    "year": 1996,
+    "publisher": "University of Texas Press",
+    "type": "book",
+    "note": "Historical source on tokens, accounting, and the emergence of writing; useful for ledger history after human review."
+  },
+  {
+    "id": "ingham-nature-of-money",
+    "title": "The Nature of Money",
+    "author": "Geoffrey Ingham",
+    "year": 2004,
+    "publisher": "Polity",
+    "type": "book",
+    "note": "Monetary sociology source on money, credit, institutions, and trust; useful as a competing interpretation alongside commodity-money accounts."
+  },
+  {
+    "id": "federal-reserve-fed-explained",
+    "title": "The Fed Explained: What the Central Bank Does",
+    "author": "Board of Governors of the Federal Reserve System",
+    "publisher": "Board of Governors of the Federal Reserve System",
+    "type": "institutional",
+    "url": "https://www.federalreserve.gov/aboutthefed/the-fed-explained.htm",
+    "note": "Institutional overview of Federal Reserve functions; useful for central-bank scope with U.S.-specific limits."
+  },
+  {
+    "id": "bank-of-england-legal-tender",
+    "title": "What is legal tender?",
+    "author": "Bank of England",
+    "publisher": "Bank of England",
+    "type": "institutional",
+    "url": "https://www.bankofengland.co.uk/explainers/what-is-legal-tender",
+    "note": "Institutional explainer on the narrow meaning of legal tender in the United Kingdom."
+  },
+  {
+    "id": "royal-mint-legal-tender-guidelines",
+    "title": "Legal Tender Guidelines",
+    "author": "The Royal Mint",
+    "publisher": "The Royal Mint",
+    "type": "institutional",
+    "url": "https://www.royalmint.com/aboutus/policies-and-guidelines/legal-tender-guidelines/",
+    "note": "Institutional guidance on UK legal tender limits; useful for correcting common overstatements."
+  },
+  {
+    "id": "us-code-legal-tender",
+    "title": "31 U.S. Code Section 5103 - Legal tender",
+    "author": "United States Congress",
+    "publisher": "Legal Information Institute, Cornell Law School",
+    "type": "legislation",
+    "url": "https://www.law.cornell.edu/uscode/text/31/5103",
+    "note": "U.S. statutory legal-tender text; use only for jurisdiction-specific claims."
   }
 ]
