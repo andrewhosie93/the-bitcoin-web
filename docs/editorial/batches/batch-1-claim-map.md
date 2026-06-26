@@ -358,3 +358,28 @@ High-risk pattern findings:
 - Legal Tender is carefully narrow, but many claims need jurisdictional and monetary-history support.
 
 Batch 1 should remain `blocked-pending-human-review`.
+
+## Rewrite follow-up notes
+
+This section records the narrow public-prose rewrite pass for Bitcoin as Money, Scarcity and Blockchain. It does not delete or supersede the original risk history above.
+
+Claims narrowed:
+
+- Bitcoin as Money: BAM-05 was split into protocol rules, transferable units and key-based control without presenting the bundle as a complete monetary proof.
+- Bitcoin as Money: BAM-10 was narrowed so validation is attributed to compatible software and nodes, not implied as something every user directly performs.
+- Bitcoin as Money: BAM-13 was softened from a money claim "resting on" mechanisms to a monetary role that depends on use without a central issuer.
+- Scarcity: SCA-14 and SCA-15 were narrowed so supply-rule change depends on broad acceptance and continued enforcement, not absolute immutability.
+- Scarcity: SCA-16 was narrowed so scarcity remains enforceable by validating nodes but economically dependent on demand and coordination.
+- Blockchain: BLK-03, BLK-09 and BLK-11 were narrowed around accepted history, valid transactions and spendable outputs instead of saying the blockchain simply defines which coins exist.
+- Blockchain: BLK-10 was made explicit that a blockchain alone does not guarantee Bitcoin-like security or usefulness.
+
+Claims still requiring human review:
+
+- Bitcoin as Money still needs source-by-source review for monetary functions, legal treatment and competing theories of money.
+- Scarcity still needs human review around value theory, governance language and social coordination.
+- Blockchain still needs technical review around UTXOs, proof of work, reorganisations and the limits of generic blockchain claims.
+
+Claims still source-needed:
+
+- All three rewritten nodes remain `source-needed`.
+- The rewrite did not change sourceIds, review statuses, planning statuses or the Batch 1 gate.
