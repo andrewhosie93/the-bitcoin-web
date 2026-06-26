@@ -57,6 +57,8 @@ Bitcoin should enter as a comparison, not a slogan. It reduces unilateral discre
 
 ## Candidate Nodes
 
+These are proposed nodes only. They should not be added to `content/nodes.json` until a human editor approves the route map and individual bubble proposals.
+
 ### Monetary Sovereignty
 
 - Purpose: Explain the authority to define, issue, tax in and regulate money within a political jurisdiction.
@@ -97,25 +99,15 @@ Bitcoin should enter as a comparison, not a slogan. It reduces unilateral discre
 - Risk of duplication: Medium with Scarcity and Costly Production if framed mainly as supply expansion.
 - Source categories required: Monetary history, public finance, coinage and minting history, Bitcoin issuance documentation.
 
-### Fiat Money
+### Monetary Policy
 
-- Purpose: Retain the existing node as the route's explanation of state-backed money without commodity redemption.
-- Likely parent or parents: Political Control or Monetary Sovereignty.
-- Possible children: Central Banks, Monetary Policy, Capital Controls.
-- Shared node: Yes, because it also touches Paper Claims and Scarcity.
-- Connection to Bitcoin: Bitcoin contrasts discretionary fiat governance with rule-bound issuance under open validation.
-- Risk of duplication: High if it tries to cover sovereignty, central banking, inflation and legal tender at once.
-- Source categories required: Fiat money history, gold-standard transition, monetary theory, institutional explainers, Bitcoin monetary-policy references.
-
-### Central Banks
-
-- Purpose: Retain the existing shared node as the route's explanation of monetary authority, reserves, payment systems and emergency liquidity.
-- Likely parent or parents: Fiat Money; Political Control as an alternative parent.
-- Possible children: Central Bank Settlement, Lender of Last Resort, Monetary Policy.
-- Shared node: Yes, already shared through two parent paths and related to Banking Rails.
-- Connection to Bitcoin: Bitcoin removes a central bank from base issuance and base settlement, but not from surrounding market liquidity, custody, exchange access or regulation.
-- Risk of duplication: Medium with Banks and Banking Rails if payment-system functions are not separated.
-- Source categories required: Central-bank histories, central-bank operating guides, lender-of-last-resort literature, payment-system material.
+- Purpose: Explain how authorities influence money, credit and liquidity through policy tools rather than treating "money printing" as a single act.
+- Likely parent or parents: Central Banks; possible parent Fiat Money.
+- Possible children: Inflation And Debasement, Interest Rates, Open Market Operations.
+- Shared node: Possibly, because it touches Government & Power and wider macroeconomic debates.
+- Connection to Bitcoin: Bitcoin fixes base issuance rules in protocol, but markets around Bitcoin still respond to interest rates, liquidity conditions and policy expectations.
+- Risk of duplication: High with Fiat Money and Central Banks unless it stays focused on policy tools and transmission rather than the whole fiat system.
+- Source categories required: Central-bank operating guides, institutional explainers, monetary-policy textbooks, peer-reviewed macroeconomic history, serious competing interpretations.
 
 ### Central Bank Settlement
 
@@ -137,16 +129,6 @@ Bitcoin should enter as a comparison, not a slogan. It reduces unilateral discre
 - Risk of duplication: Medium with Trust and Banks if it becomes a general banking-crisis node.
 - Source categories required: Central banking history, financial-crisis history, lender-of-last-resort theory, institutional crisis reports.
 
-### Legal Tender
-
-- Purpose: Retain the existing node as the route's legal-finality endpoint.
-- Likely parent or parents: Central Banks, Taxation, State Coinage.
-- Possible children: none for the first pass; possible later side node on contract settlement.
-- Shared node: Yes, because it touches Government & Power, Trust and Fiat Money.
-- Connection to Bitcoin: Bitcoin usually depends on voluntary acceptance rather than legal-tender privilege.
-- Risk of duplication: Medium with Taxation and Fiat Money if legal privilege is overstated as the whole basis of state money.
-- Source categories required: Legal tender doctrine, legislation, court or institutional explainers, monetary sovereignty scholarship.
-
 ### Capital Controls
 
 - Purpose: Explain restrictions on moving money across borders or out of a financial system.
@@ -156,6 +138,59 @@ Bitcoin should enter as a comparison, not a slogan. It reduces unilateral discre
 - Connection to Bitcoin: Bitcoin can make some cross-border transfer technically possible without bank permission, while access points, custody, identification, enforcement and liquidity remain controllable.
 - Risk of duplication: High with censorship, sanctions and surveillance if those become their own route later.
 - Source categories required: Primary legislation, central-bank or treasury materials, international monetary history, institutional explainers, Bitcoin primary and legal materials.
+
+## Existing Route Anchors To Retain
+
+These nodes already exist publicly and should not be duplicated.
+
+### Fiat Money
+
+- Route role: Keep as the explanation of state-backed money without commodity redemption.
+- Likely parent or parents: Political Control now; Monetary Sovereignty after a future approved route change.
+- Possible children: Central Banks, Monetary Policy, Capital Controls.
+- Shared node: Yes, because it also touches Paper Claims and Scarcity.
+- Connection to Bitcoin: Bitcoin contrasts discretionary fiat governance with rule-bound issuance under open validation.
+- Risk of duplication: High if it tries to cover sovereignty, central banking, inflation and legal tender at once.
+- Source categories required: Fiat money history, gold convertibility, Bretton Woods, monetary theory, institutional explainers, Bitcoin monetary-policy references.
+
+### Central Banks
+
+- Route role: Keep as the shared explanation of monetary authority, reserves, payment systems and emergency liquidity.
+- Likely parent or parents: Fiat Money; Political Control as the existing alternative parent.
+- Possible children: Monetary Policy, Central Bank Settlement, Lender of Last Resort.
+- Shared node: Yes, already shared through two parent paths and related to Banking Rails.
+- Connection to Bitcoin: Bitcoin removes a central bank from base issuance and base settlement, but not from surrounding market liquidity, custody, exchange access or regulation.
+- Risk of duplication: Medium with Banks and Banking Rails if payment-system functions are not separated.
+- Source categories required: Central-bank histories, central-bank operating guides, lender-of-last-resort literature, payment-system material.
+
+### Legal Tender
+
+- Route role: Keep as the legal-finality endpoint for the first expansion.
+- Likely parent or parents: Central Banks now; possible future parents Taxation, State Coinage or Monetary Sovereignty.
+- Possible children: none for the first pass; possible later side node on contract settlement.
+- Shared node: Yes, because it touches Government & Power, Trust and Fiat Money.
+- Connection to Bitcoin: Bitcoin usually depends on voluntary acceptance rather than legal-tender privilege.
+- Risk of duplication: Medium with Taxation and Fiat Money if legal privilege is overstated as the whole basis of state money.
+- Source categories required: Legal tender doctrine, legislation, court or institutional explainers, monetary sovereignty scholarship.
+
+## Proposed Navigable Edge Rationales
+
+These are route proposals only. Existing edges should remain unchanged until the route map is approved.
+
+- Political Control -> Monetary Sovereignty: Institution edge; monetary sovereignty explains the jurisdictional authority behind issuance, tax receivability, settlement rules and legal enforcement.
+- Monetary Sovereignty -> State Coinage: Implementation edge; state coinage shows an older practical form of political authority over units, standards and mints.
+- State Coinage -> Seigniorage: Mechanism edge; seigniorage explains the fiscal and political incentive created by issuing or controlling money.
+- Monetary Sovereignty -> Taxation: Mechanism edge; taxation explains why states specify acceptable units and how public obligations can support monetary demand.
+- Monetary Sovereignty -> Fiat Money: Implementation edge; fiat money is the modern institutional form in which state authority, law and confidence replace commodity redemption.
+- Fiat Money -> Central Banks: Institution edge; central banks administer reserves, monetary operations and emergency liquidity inside modern fiat systems.
+- Central Banks -> Monetary Policy: Mechanism edge; monetary policy explains the tools central banks use to influence money, credit and liquidity.
+- Central Banks -> Central Bank Settlement: Mechanism edge; reserve settlement shows how central-bank money anchors interbank payment finality.
+- Central Banks -> Legal Tender: Institution edge; legal tender explains the legal rules around settling certain debts in a jurisdiction.
+
+Possible later side edges:
+
+- Central Banks -> Lender of Last Resort: Mechanism edge; emergency liquidity explains a central-bank crisis function and its moral-hazard trade-off.
+- Monetary Sovereignty -> Capital Controls: Implementation edge; capital controls show state authority over cross-border monetary movement and access.
 
 ## Route Options
 
@@ -171,20 +206,24 @@ This route gives beginners a clean path from authority, to fiat systems, to inst
 
 ### Fuller Route, 10 Nodes
 
-1. Political Control
-2. Monetary Sovereignty
-3. State Coinage
-4. Taxation
-5. Seigniorage
-6. Fiat Money
-7. Central Banks
-8. Central Bank Settlement
-9. Lender of Last Resort
-10. Legal Tender
+Proposed shape:
 
-This route makes the historical and institutional steps more explicit: standards, public finance, issuance revenue, fiat governance, reserve settlement and crisis liquidity each get room. Its weakness is cognitive load. It may feel slower unless each surface layer stays short and each shared node has clear "Also touches" previews.
+- Political Control
+- Monetary Sovereignty
+- State Coinage
+- Seigniorage
+- Taxation
+- Fiat Money
+- Central Banks
+- Monetary Policy
+- Central Bank Settlement
+- Legal Tender
 
-Capital Controls should probably begin as a shared side node rather than part of the first main route. It is important, but it pulls the route towards sanctions, censorship, borders and civil liberties before the basic monetary-institution story is stable.
+This route makes the institutional steps more explicit: jurisdictional authority, coinage standards, issuance revenue, tax obligations, fiat governance, policy tools, reserve settlement and legal finality each get room. Its weakness is cognitive load. It may feel slower unless each Surface layer stays short and each shared node has clear "Also touches" previews.
+
+Lender of Last Resort and Capital Controls should probably begin as shared side candidates rather than part of the first main route. Lender of Last Resort pulls the route towards crisis history and banking regulation. Capital Controls pulls it towards sanctions, censorship, borders and civil liberties before the basic monetary-institution story is stable.
+
+Inflation And Debasement, Bretton Woods and Gold Convertibility are important source and context areas, but they should not be rushed into the first route unless the human review decides the route needs a stronger historical hinge between coinage, fiat transition and central-bank policy.
 
 ## Cross-Strand Connections
 
