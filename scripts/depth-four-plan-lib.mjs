@@ -297,6 +297,11 @@ export function validatePlan(plan) {
     if (!BATCH_GATE_STATUSES.has(batch.gateStatus)) {
       fail(`Implementation batch "${batch.id ?? "(missing id)"}" has invalid gateStatus "${batch.gateStatus}".`);
     }
+    for (const blocker of batch.blockers ?? []) {
+      if (!blocker.type || !blocker.item || !blocker.detail) {
+        fail(`Implementation batch "${batch.id}" has a blocker missing type, item or detail.`);
+      }
+    }
     if (!Array.isArray(batch.nodeIds) || batch.nodeIds.length === 0) {
       fail(`Implementation batch "${batch.id ?? "(missing id)"}" must include nodeIds.`);
     }
@@ -321,7 +326,7 @@ export function validatePlan(plan) {
       warn(`Implementation batch "${gate.id}" has no computed blockers but is still marked blocked-pending-human-review.`);
     }
     if (gate.blockerCount > 0) {
-      warn(`Implementation batch "${gate.id}" is blocked by ${gate.blockerCount} unreviewed nodes, edges or contexts.`);
+      warn(`Implementation batch "${gate.id}" is blocked by ${gate.blockerCount} review or explicit planning blockers.`);
     }
   }
 
@@ -392,8 +397,19 @@ export function calculateBatchGates(plan) {
       .map((nodeId) => approvedSharedByNode.get(nodeId))
       .filter((shared) => shared && !REVIEWED_STATUSES.has(shared.reviewStatus))
       .map((shared) => shared.nodeId);
+    const explicitBlockers = (batch.blockers ?? []).map((blocker) => ({
+      type: blocker.type,
+      item: blocker.item,
+      detail: blocker.detail,
+    }));
 
     const blockerCount =
+      nodeBlockers.length +
+      edgeBlockers.length +
+      placementBlockers.length +
+      sharedContextBlockers.length +
+      explicitBlockers.length;
+    const reviewBlockerCount =
       nodeBlockers.length +
       edgeBlockers.length +
       placementBlockers.length +
@@ -407,7 +423,9 @@ export function calculateBatchGates(plan) {
       edgeBlockers,
       placementBlockers,
       sharedContextBlockers,
+      explicitBlockers,
       blockerCount,
+      reviewBlockerCount,
       ready: blockerCount === 0 && batch.gateStatus === "ready-for-implementation",
     };
   });

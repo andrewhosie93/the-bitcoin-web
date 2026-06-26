@@ -59,7 +59,7 @@ for (const [scope, metric] of Object.entries(result.metrics.reviewMetrics)) {
 console.log("");
 console.log("Implementation batch gates");
 for (const gate of result.metrics.batchGates) {
-  console.log(`  ${gate.id}: ${gate.gateStatus}; blockers=${gate.blockerCount}`);
+  console.log(`  ${gate.id}: ${gate.gateStatus}; blockers=${gate.blockerCount}; review=${gate.reviewBlockerCount}; explicit=${gate.explicitBlockers.length}`);
 }
 
 if (batchId) {
@@ -72,10 +72,19 @@ if (batchId) {
   } else {
     console.log(`  status: ${gate.gateStatus}`);
     console.log(`  ready: ${gate.ready ? "yes" : "no"}`);
+    console.log(`  blocker counts: ${gate.blockerCount} total; ${gate.reviewBlockerCount} review; ${gate.explicitBlockers.length} explicit`);
     console.log(`  node blockers: ${gate.nodeBlockers.map((nodeId) => nodeTitle(plan, nodeId)).join(", ") || "none"}`);
     console.log(`  edge blockers: ${gate.edgeBlockers.join(", ") || "none"}`);
     console.log(`  placement blockers: ${gate.placementBlockers.join(", ") || "none"}`);
     console.log(`  shared-context blockers: ${gate.sharedContextBlockers.map((nodeId) => nodeTitle(plan, nodeId)).join(", ") || "none"}`);
+    if (gate.explicitBlockers.length) {
+      console.log("  explicit blockers:");
+      for (const blocker of gate.explicitBlockers) {
+        console.log(`    - ${blocker.type}: ${blocker.item} - ${blocker.detail}`);
+      }
+    } else {
+      console.log("  explicit blockers: none");
+    }
     if (!gate.ready) process.exitCode = 1;
   }
 }

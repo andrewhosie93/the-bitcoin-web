@@ -507,14 +507,14 @@ The approved shared-candidate list is declared separately from realised multi-pa
 
 These batches do not implement anything. Each batch still requires bubble proposals, source inventories, human approval, validation, manual editorial review and a commit.
 
-| Batch | Gate status | Review blockers | Nodes | Why this order |
-| --- | --- | --- | --- | --- |
-| 1. Existing Money sourcing backlog | blocked-pending-human-review | 44 | Bitcoin as Money; Scarcity; Settlement; Custody; Ledgers; Trust; Blockchain; Central Banks; Legal Tender | Cleans up existing public Money nodes before adding new structure. |
-| 2. Core shared Bitcoin mechanisms | blocked-pending-human-review | 31 | Proof of Work; Hash Functions; Digital Signatures; Private Keys; Full Nodes; Validation; UTXO Model; Difficulty Adjustment | Establishes the shared technical concepts needed by later strands. |
-| 3. Historical Networks spine | blocked-pending-human-review | 22 | Peer-to-Peer Networks; Internet Protocols; Packet Switching; Telecommunications; Telegraphy; Postal and Messenger Networks; Writing and Signalling | Adds communications history before network mechanisms sprawl. |
-| 4. Historical Computation spine | blocked-pending-human-review | 24 | Distributed Computing; Digital Computers; Transistors; Programmable Machines; Turing Machines; Boolean Logic; Mechanical Calculation; Counting and Record-Keeping | Builds rule-execution and machine history before adding detailed computation branches. |
-| 5. Government & Power spine | blocked-pending-human-review | 28 | Modern Regulatory Systems; Monetary Sovereignty; Fiscal States; Public Debt; War Finance; State Capacity; Taxation; State Coinage; Law | Gives state power its own spine, separate from Money's Political Control framing. |
-| 6. Energy history spine | blocked-pending-human-review | 21 | Bitcoin Mining; Electrical Grids and Computation; Electricity; Steam Power; Water and Wind Power; Animal and Human Work; Fire and Biological Energy | Replaces the mining-heavy energy route with real energy history. |
+| Batch | Gate status | Blockers | Explicit blocker summary | Nodes | Why this order |
+| --- | --- | --- | --- | --- | --- |
+| 1. Existing Money sourcing backlog | blocked-pending-human-review | 50 | source-gaps: Settlement; Custody; Ledgers; Trust; Blockchain; Central Banks; Legal Tender; source-review: Bitcoin as Money; Scarcity; trust-edge-review: Bitcoin as Money -> Trust; Philosophy & Time -> Trust; settlement-scope-review: Settlement; shared-context-review: Settlement; Trust; Blockchain; Central Banks; Legal Tender; source-backlog: Batch 1 | Bitcoin as Money; Scarcity; Settlement; Custody; Ledgers; Trust; Blockchain; Central Banks; Legal Tender | Cleans up existing public Money nodes before adding new structure. |
+| 2. Core shared Bitcoin mechanisms | blocked-pending-human-review | 31 |  | Proof of Work; Hash Functions; Digital Signatures; Private Keys; Full Nodes; Validation; UTXO Model; Difficulty Adjustment | Establishes the shared technical concepts needed by later strands. |
+| 3. Historical Networks spine | blocked-pending-human-review | 22 |  | Peer-to-Peer Networks; Internet Protocols; Packet Switching; Telecommunications; Telegraphy; Postal and Messenger Networks; Writing and Signalling | Adds communications history before network mechanisms sprawl. |
+| 4. Historical Computation spine | blocked-pending-human-review | 24 |  | Distributed Computing; Digital Computers; Transistors; Programmable Machines; Turing Machines; Boolean Logic; Mechanical Calculation; Counting and Record-Keeping | Builds rule-execution and machine history before adding detailed computation branches. |
+| 5. Government & Power spine | blocked-pending-human-review | 28 |  | Modern Regulatory Systems; Monetary Sovereignty; Fiscal States; Public Debt; War Finance; State Capacity; Taxation; State Coinage; Law | Gives state power its own spine, separate from Money's Political Control framing. |
+| 6. Energy history spine | blocked-pending-human-review | 21 |  | Bitcoin Mining; Electrical Grids and Computation; Electricity; Steam Power; Water and Wind Power; Animal and Human Work; Fire and Biological Energy | Replaces the mining-heavy energy route with real energy history. |
 
 ## Unresolved Editorial Questions
 

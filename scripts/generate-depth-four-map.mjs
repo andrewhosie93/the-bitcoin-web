@@ -301,15 +301,16 @@ out("");
 out("These batches do not implement anything. Each batch still requires bubble proposals, source inventories, human approval, validation, manual editorial review and a commit.");
 out("");
 table(
-  ["Batch", "Gate status", "Review blockers", "Nodes", "Why this order"],
+  ["Batch", "Gate status", "Blockers", "Explicit blocker summary", "Nodes", "Why this order"],
   plan.implementationBatches.map((batch) => {
     const gate = result.metrics.batchGates.find((item) => item.id === batch.id);
     return [
-    `${batch.order}. ${batch.title}`,
+      `${batch.order}. ${batch.title}`,
       batch.gateStatus,
       gate?.blockerCount ?? "",
-    batch.nodeIds.map((nodeId) => nodeTitle(plan, nodeId)),
-    batch.rationale,
+      gate?.explicitBlockers.map((blocker) => `${blocker.type}: ${blocker.item}`) ?? [],
+      batch.nodeIds.map((nodeId) => nodeTitle(plan, nodeId)),
+      batch.rationale,
     ];
   }),
 );

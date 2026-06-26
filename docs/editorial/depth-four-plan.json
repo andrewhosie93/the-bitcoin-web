@@ -152,7 +152,12 @@
         "monetary history"
       ],
       "planningStatus": "Existing draft; source review",
-      "reviewStatus": "provisional"
+      "reviewStatus": "provisional",
+      "planningNotes": [
+        "Frame Bitcoin as a monetary object or monetary candidate, not as universally adopted money.",
+        "Avoid adoption certainty and claims that Bitcoin fulfils every money function in every context.",
+        "Use the route to open questions about scarcity, settlement, custody and records rather than to promote a conclusion."
+      ]
     },
     {
       "id": "bitcoin-mining",
@@ -1566,7 +1571,12 @@
         "legal materials"
       ],
       "planningStatus": "Existing draft; keep; Networks placement confirms coverage depth 2",
-      "reviewStatus": "provisional"
+      "reviewStatus": "provisional",
+      "planningNotes": [
+        "Separate technical confirmation, clearing, legal settlement and practical irreversibility.",
+        "Do not equate Bitcoin confirmations with legal finality.",
+        "Money and Networks may need separate route treatments because payment finality and payment-message infrastructure are not the same thing."
+      ]
     },
     {
       "id": "shared-truth",
@@ -1849,7 +1859,12 @@
         "monetary history"
       ],
       "planningStatus": "Existing draft; keep",
-      "reviewStatus": "provisional"
+      "reviewStatus": "provisional",
+      "planningNotes": [
+        "Do not imply Bitcoin eliminates trust.",
+        "Distinguish trust in issuers, custodians, software, incentives, users and institutions.",
+        "Money and Philosophy & Time may need separate route treatments because they ask different questions about reliance."
+      ]
     },
     {
       "id": "turing-machines",
@@ -1992,7 +2007,7 @@
       "parentId": "bitcoin",
       "childId": "bitcoin-as-money",
       "type": "Foundation",
-      "rationale": "Bitcoin as Money belongs under Bitcoin because it supplies a foundation the Money route needs before narrower mechanisms or examples can make sense.",
+      "rationale": "Following Bitcoin into Bitcoin as Money opens the Money route by treating Bitcoin as a monetary object to be examined through scarcity, settlement, custody and records.",
       "reviewStatus": "provisional"
     },
     {
@@ -2028,7 +2043,7 @@
       "parentId": "bitcoin-as-money",
       "childId": "scarcity",
       "type": "Foundation",
-      "rationale": "Scarcity belongs under Bitcoin as Money because it supplies a foundation the Money route needs before narrower mechanisms or examples can make sense.",
+      "rationale": "Scarcity deepens the Money route because Bitcoin issuance rules make credible supply limits a central monetary question without making scarcity itself a theory of value.",
       "reviewStatus": "provisional"
     },
     {
@@ -2037,7 +2052,7 @@
       "parentId": "bitcoin-as-money",
       "childId": "settlement",
       "type": "Mechanism",
-      "rationale": "Settlement belongs under Bitcoin as Money because it explains a mechanism by which the Money route works, is constrained or becomes verifiable.",
+      "rationale": "Settlement deepens the Money route by asking when a Bitcoin transfer is final enough for a recipient to rely on it.",
       "reviewStatus": "provisional"
     },
     {
@@ -2046,7 +2061,7 @@
       "parentId": "bitcoin-as-money",
       "childId": "custody",
       "type": "Mechanism",
-      "rationale": "Custody belongs under Bitcoin as Money because it explains a mechanism by which the Money route works, is constrained or becomes verifiable.",
+      "rationale": "Custody deepens the Money route because control of keys or custodial claims determines who can actually hold and spend the asset.",
       "reviewStatus": "provisional"
     },
     {
@@ -2055,7 +2070,7 @@
       "parentId": "bitcoin-as-money",
       "childId": "ledgers",
       "type": "Mechanism",
-      "rationale": "Ledgers belongs under Bitcoin as Money because it explains a mechanism by which the Money route works, is constrained or becomes verifiable.",
+      "rationale": "Ledgers deepen the Money route because Bitcoin ownership is represented through a shared record of spendable outputs and transaction history.",
       "reviewStatus": "provisional"
     },
     {
@@ -2064,7 +2079,7 @@
       "parentId": "bitcoin-as-money",
       "childId": "trust",
       "type": "Foundation",
-      "rationale": "Trust belongs under Bitcoin as Money because it supplies a foundation the Money route needs before narrower mechanisms or examples can make sense.",
+      "rationale": "Trust deepens the Money route by showing which forms of reliance Bitcoin shifts from issuers and payment intermediaries toward rules, software, incentives and user verification.",
       "reviewStatus": "provisional"
     },
     {
@@ -2073,7 +2088,7 @@
       "parentId": "ledgers",
       "childId": "blockchain",
       "type": "Implementation",
-      "rationale": "Blockchain belongs under Ledgers because it shows the broader Money concept put into practice in a concrete system, tool or institutional setting.",
+      "rationale": "Blockchain deepens the ledger route because Bitcoin records transactions as an ordered chain of blocks that users can independently verify.",
       "reviewStatus": "provisional"
     },
     {
@@ -2082,7 +2097,7 @@
       "parentId": "modern-fiat-and-credit-systems",
       "childId": "central-banks",
       "type": "Institution",
-      "rationale": "Central Banks belongs under Modern Fiat and Credit Systems because it names an institution that administers, standardises or shapes the relevant Money system.",
+      "rationale": "Central Banks deepen the modern fiat route because they shape reserves, settlement, liquidity and monetary policy in many contemporary money systems.",
       "reviewStatus": "provisional"
     },
     {
@@ -2244,7 +2259,7 @@
       "parentId": "modern-fiat-and-credit-systems",
       "childId": "legal-tender",
       "type": "Mechanism",
-      "rationale": "Legal Tender belongs under Modern Fiat and Credit Systems because it explains a mechanism by which the Money route works, is constrained or becomes verifiable.",
+      "rationale": "Legal Tender deepens the modern fiat route by showing how law can define recognised means for settling certain debts without explaining all monetary value.",
       "reviewStatus": "provisional"
     },
     {
@@ -2649,7 +2664,7 @@
       "parentId": "data-structures",
       "childId": "blockchain",
       "type": "Implementation",
-      "rationale": "Blockchain belongs under Data Structures because it shows the broader Computation concept put into practice in a concrete system, tool or institutional setting.",
+      "rationale": "Blockchain deepens the Computation route because it arranges transactions into linked, verifiable blocks whose ordering matters to consensus.",
       "reviewStatus": "provisional"
     },
     {
@@ -2856,7 +2871,7 @@
       "parentId": "payment-networks",
       "childId": "settlement",
       "type": "Mechanism",
-      "rationale": "Settlement belongs under Payment Networks because it explains a mechanism by which the Networks route works, is constrained or becomes verifiable.",
+      "rationale": "Settlement deepens the Networks route because systems that move payment messages still need rules for when obligations are final enough to rely on.",
       "reviewStatus": "provisional"
     },
     {
@@ -3000,7 +3015,7 @@
       "parentId": "monetary-sovereignty",
       "childId": "central-banks",
       "type": "Institution",
-      "rationale": "Central Banks belongs under Monetary Sovereignty because it names an institution that administers, standardises or shapes the relevant Government & Power system.",
+      "rationale": "Central Banks deepen the Government & Power route because they are major institutions through which states and currency areas manage money, reserves and emergency liquidity.",
       "reviewStatus": "provisional"
     },
     {
@@ -3009,7 +3024,7 @@
       "parentId": "monetary-sovereignty",
       "childId": "legal-tender",
       "type": "Mechanism",
-      "rationale": "Legal Tender belongs under Monetary Sovereignty because it explains a mechanism by which the Government & Power route works, is constrained or becomes verifiable.",
+      "rationale": "Legal Tender deepens the Government & Power route because states can use law to define recognised means for settling debts within a jurisdiction.",
       "reviewStatus": "provisional"
     },
     {
@@ -3090,7 +3105,7 @@
       "parentId": "philosophy-and-time",
       "childId": "trust",
       "type": "Foundation",
-      "rationale": "Trust belongs under Philosophy & Time because it supplies a foundation the Philosophy & Time route needs before narrower mechanisms or examples can make sense.",
+      "rationale": "Trust deepens the Philosophy & Time route because reliance, verification and shared expectations shape later questions about finality, rules and coordination.",
       "reviewStatus": "provisional"
     },
     {
@@ -5489,7 +5504,39 @@
       ],
       "rationale": "Cleans up existing public Money nodes before adding new structure.",
       "gateStatus": "blocked-pending-human-review",
-      "gateRationale": "Blocked until the batch nodes, incoming navigable edges, contextual placements and approved shared contexts are semantically reviewed."
+      "gateRationale": "Blocked until edge rationale revisions, source scope, source records and shared-context questions receive human editorial review.",
+      "blockers": [
+        {
+          "type": "source-gaps",
+          "item": "Settlement; Custody; Ledgers; Trust; Blockchain; Central Banks; Legal Tender",
+          "detail": "Live nodes have no sourceIds and need source records before editorial approval."
+        },
+        {
+          "type": "source-review",
+          "item": "Bitcoin as Money; Scarcity",
+          "detail": "Existing sourceIds are present, but the sources still need human inspection and claim mapping."
+        },
+        {
+          "type": "trust-edge-review",
+          "item": "Bitcoin as Money -> Trust; Philosophy & Time -> Trust",
+          "detail": "Trust edges have revised rationales but still need human semantic review and route-specific scope decisions."
+        },
+        {
+          "type": "settlement-scope-review",
+          "item": "Settlement",
+          "detail": "Settlement needs human review to separate technical confirmation, clearing, legal settlement and practical irreversibility."
+        },
+        {
+          "type": "shared-context-review",
+          "item": "Settlement; Trust; Blockchain; Central Banks; Legal Tender",
+          "detail": "Realised and planned shared contexts need review before any context is treated as implementation-ready."
+        },
+        {
+          "type": "source-backlog",
+          "item": "Batch 1",
+          "detail": "Source categories must be converted into real source records and attached cautiously without changing source-needed status."
+        }
+      ]
     },
     {
       "id": "batch-2",
