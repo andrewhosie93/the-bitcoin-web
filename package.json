@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "check": "tsc --noEmit",
-    "validate:atlas": "node scripts/validate-atlas.mjs"
+    "validate:atlas": "node scripts/validate-atlas.mjs",
+    "validate:depth-four-plan": "node scripts/validate-depth-four-plan.mjs",
+    "validate:depth-four-batch1": "node scripts/validate-depth-four-plan.mjs --batch batch-1",
+    "generate:depth-four-map": "node scripts/generate-depth-four-map.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.18.2",
