@@ -16,9 +16,6 @@ What happens if it is omitted?
 
 ## Graph Position
 
-Historical era:
-Temporal kind:
-Chronology note:
 Proposed coverage depth:
 Proposed parent or parents:
 
@@ -31,6 +28,25 @@ For each parent:
 Proposed children:
 Also touches:
 Shared-node potential:
+
+## Temporal Position
+
+Temporal kind:
+Broad time label:
+Approximate start:
+Approximate end:
+Time confidence:
+Historical-spine membership:
+Temporal rationale:
+
+Questions:
+
+- Is this tied to one period or persistent across several?
+- Is the proposed parent actually earlier, or merely explanatory?
+- Does the edge imply a misleading linear history?
+- Is an exact date genuinely defensible?
+- Should the node branch from the spine rather than sit on it?
+- If this is a Predecessor edge, does time move backwards correctly?
 
 ## Duplicate Review
 

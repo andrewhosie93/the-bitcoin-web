@@ -31,6 +31,16 @@ Use this file as the compact operational brief. For detailed editorial rules, re
 - Deeper explains mechanisms, trade-offs and relevant Bitcoin connections.
 - Sources provide evidence and further reading.
 
+## Temporal Planning Rules
+
+- Every main strand requires an approved historical spine before public expansion.
+- Distinguish Path depth, Coverage depth and Historical era in planning notes.
+- Time guides placement, but causal and explanatory meaning determines edges.
+- Predecessor edges should normally move backwards in time; exceptions need rationale.
+- Never invent exact dates for disputed origins, broad practices or contested concepts.
+- Persistent, recurring and atemporal concepts must not be forced into chronology.
+- Do not implement public nodes before the temporal map passes human review.
+
 ## Required Workflow Before Adding Nodes
 
 1. Map candidate bubbles.

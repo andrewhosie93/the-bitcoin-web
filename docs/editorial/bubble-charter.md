@@ -373,7 +373,51 @@ type TemporalKind =
 - recurring: a pattern that appears repeatedly in different historical settings.
 - atemporal: an abstract mechanism, theorem or conceptual distinction whose explanatory role is not tied to one origin date.
 
-### 4. Temporal Edge Discipline
+### 4. Temporal Planning Metadata
+
+Every proposal should include:
+
+- Temporal kind
+- Broad time label
+- Approximate start
+- Approximate end
+- Time confidence
+- Historical-spine membership
+- Temporal rationale
+
+Time confidence values:
+
+- High
+- Medium
+- Low
+- Contested
+- Not applicable
+
+Use broad labels where precision would mislead. Never invent exact dates for disputed origins, regionally uneven practices or concepts that recur across several eras.
+
+### 5. One Historical Spine Per Strand
+
+Every main strand requires one approved historical spine before public expansion.
+
+The spine is a backbone, not the whole graph. Mechanisms, examples and contested concepts branch from it. A historical spine must not imply simple replacement, universal progression or inevitability toward Bitcoin.
+
+### 6. Future Visual Guidance
+
+The eventual visual language should use broad historical bands rather than a strict proportional timeline. Earlier periods may feel visually deeper, and logarithmic or non-linear spacing may be needed to make ancient, medieval, industrial and digital layers legible together.
+
+Atemporal and recurring concepts must not be assigned arbitrary dates merely to fit a visual sequence.
+
+Planning bands:
+
+- Bitcoin and contemporary digital era
+- Networked and computing era
+- Electrical and industrial era
+- Early modern institutional era
+- Medieval and ancient recorded history
+- Deep human history
+- Atemporal / recurring concepts
+
+### 7. Temporal Edge Discipline
 
 Predecessor edges normally carry the strongest chronological claim.
 
